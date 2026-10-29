@@ -32,9 +32,10 @@ class FakeClient:
 
 
 def test_lookup_word_found_and_missing():
-    assert lookup_word("猫")["meaning"] == "cat"
+    entry = lookup_word("猫")["entries"][0]
+    assert entry["readings"] == ["ねこ"] and entry["senses"][0]["meanings"][0] == "cat"
+    assert lookup_word("ねこ")["found"] is True  # si cerca anche per lettura
     assert lookup_word("犬") == {"found": False, "word": "犬"}
-
 
 def test_execute_tool_handles_bad_input():
     assert "error" in execute_tool("tool_inesistente", {})
@@ -60,4 +61,4 @@ def test_one_tool_round_trip():
     second_call = client.models.received[1]
     assert [c.role for c in second_call] == ["user", "model", "user"]
     fr = second_call[2].parts[0].function_response
-    assert fr.name == "lookup_word" and fr.response["meaning"] == "cat"
+    assert fr.name == "lookup_word" and fr.response["found"] is True
