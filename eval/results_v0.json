@@ -1,0 +1,410 @@
+{
+  "model": "gemini-3.5-flash-lite",
+  "date": "2026-10-30",
+  "rows": [
+    {
+      "category": "parola",
+      "expected_tool": "lookup_word",
+      "question": "Che cosa significa 買い物?",
+      "answer": "La parola **買い物** (かいもの, *kaimono*) significa **fare spese** o **shopping** (oppure \"merce acquistata\").",
+      "tools_called": [
+        "lookup_word"
+      ],
+      "observations": [
+        "{\"found\": true, \"word\": \"買い物\", \"entries\": [{\"kanji\": [\"買い物\", \"買物\", \"買いもの\", \"買いもん\"], \"readings\": [\"かいもの\", \"かいもん\"], \"common\": true, \"senses\": [{\"pos\": [\"noun (common) (futsuumeishi)\", \"noun or participle which takes the aux. verb suru\", \"intransitive verb\"], \"meanings\": [\"shopping\", \"purchased goods\"]}]}]}"
+      ],
+      "steps": 2,
+      "input_tokens": 803,
+      "output_tokens": 47,
+      "thinking_tokens": 0,
+      "seconds": 1.7,
+      "hit_limit": false,
+      "api_error": false,
+      "tool_ok": true,
+      "answer_ok": true
+    },
+    {
+      "category": "parola",
+      "expected_tool": "lookup_word",
+      "question": "Mi spieghi la parola 船?",
+      "answer": "La parola **船** (si legge *fune*) significa \"nave\", \"barca\" o \"imbarcazione\".",
+      "tools_called": [
+        "lookup_word"
+      ],
+      "observations": [
+        "{\"found\": true, \"word\": \"船\", \"entries\": [{\"kanji\": [\"船\", \"舟\", \"槽\"], \"readings\": [\"ふね\"], \"common\": true, \"senses\": [{\"pos\": [\"noun (common) (futsuumeishi)\"], \"meanings\": [\"ship\", \"boat\", \"watercraft\", \"vessel\"]}, {\"pos\": [\"noun (common) (futsuumeishi)\"], \"meanings\": [\"tank\", \"tub\", \"vat\", \"trough\"]}, {\"pos\": [\"noun, used as a suffix\", \"counter\"], \"meanings\": [\"counter for boat-shaped containers (e."
+      ],
+      "steps": 2,
+      "input_tokens": 854,
+      "output_tokens": 43,
+      "thinking_tokens": 0,
+      "seconds": 4.01,
+      "hit_limit": false,
+      "api_error": false,
+      "tool_ok": true,
+      "answer_ok": true
+    },
+    {
+      "category": "parola",
+      "expected_tool": "lookup_word",
+      "question": "しんぶん, che vuol dire?",
+      "answer": "La parola **しんぶん** (scritto in kanji come **新聞**) significa \"giornale\" (*newspaper*).",
+      "tools_called": [
+        "lookup_word"
+      ],
+      "observations": [
+        "{\"found\": true, \"word\": \"しんぶん\", \"entries\": [{\"kanji\": [\"新聞\"], \"readings\": [\"しんぶん\"], \"common\": true, \"senses\": [{\"pos\": [\"noun (common) (futsuumeishi)\"], \"meanings\": [\"newspaper\"]}]}]}"
+      ],
+      "steps": 2,
+      "input_tokens": 765,
+      "output_tokens": 45,
+      "thinking_tokens": 0,
+      "seconds": 2.12,
+      "hit_limit": false,
+      "api_error": false,
+      "tool_ok": true,
+      "answer_ok": true
+    },
+    {
+      "category": "parola",
+      "expected_tool": "lookup_word",
+      "question": "Cosa vuol dire パソコン?",
+      "answer": "La parola パソコン (*pasokon*) significa \"computer personale\" o \"PC\" (è l'abbreviazione di *personal computer*).",
+      "tools_called": [
+        "lookup_word"
+      ],
+      "observations": [
+        "{\"found\": true, \"word\": \"パソコン\", \"entries\": [{\"kanji\": [], \"readings\": [\"パソコン\"], \"common\": true, \"senses\": [{\"pos\": [\"noun (common) (futsuumeishi)\"], \"meanings\": [\"personal computer\", \"PC\"]}]}]}"
+      ],
+      "steps": 2,
+      "input_tokens": 759,
+      "output_tokens": 47,
+      "thinking_tokens": 0,
+      "seconds": 6.81,
+      "hit_limit": false,
+      "api_error": false,
+      "tool_ok": true,
+      "answer_ok": true
+    },
+    {
+      "category": "parola",
+      "expected_tool": "lookup_word",
+      "question": "Mi spieghi la parola ねんがじょう?",
+      "answer": "La parola **年賀状** (scritta in kana come **ねんがじょう**, *nengajō*) significa **cartolina d'auguri per il capodanno** (*New Year's card*). \n\nIn Giappone è una tradizione molto sentita: si spediscono parenti, amici e colleghi cartoline che devono arrivare rigorosamente il 1° gennaio per augurare un buon anno nuovo.",
+      "tools_called": [
+        "lookup_word"
+      ],
+      "observations": [
+        "{\"found\": true, \"word\": \"年賀状\", \"entries\": [{\"kanji\": [\"年賀状\"], \"readings\": [\"ねんがじょう\"], \"common\": true, \"senses\": [{\"pos\": [\"noun (common) (futsuumeishi)\"], \"meanings\": [\"New Year's card\"]}]}]}"
+      ],
+      "steps": 2,
+      "input_tokens": 779,
+      "output_tokens": 108,
+      "thinking_tokens": 0,
+      "seconds": 12.47,
+      "hit_limit": false,
+      "api_error": false,
+      "tool_ok": true,
+      "answer_ok": true
+    },
+    {
+      "category": "parola",
+      "expected_tool": "lookup_word",
+      "question": "Cosa significa la parola 如何?",
+      "answer": "La parola **如何** può essere letta in due modi principali, entrambi significano \"come\" o \"che ne dici di\":\n\n1. **どう (dō)**: il modo più comune e colloquiale per dire \"come\".\n2. **いかが (ikaga)**: una forma più formale e gentile (spesso usata per chiedere \"come sta?\" o \"che ne pensa?\").",
+      "tools_called": [
+        "lookup_word"
+      ],
+      "observations": [
+        "{\"found\": true, \"word\": \"如何\", \"entries\": [{\"kanji\": [\"如何\", \"何う\"], \"readings\": [\"どう\"], \"common\": true, \"senses\": [{\"pos\": [\"adverb (fukushi)\"], \"meanings\": [\"how\", \"in what way\", \"how about\"]}]}, {\"kanji\": [\"如何\"], \"readings\": [\"いかが\"], \"common\": true, \"senses\": [{\"pos\": [\"adverb (fukushi)\"], \"meanings\": [\"how\", \"in what way\", \"how about\"]}, {\"pos\": [\"adjectival nouns or quasi-adjectives (keiyodoshi)"
+      ],
+      "steps": 2,
+      "input_tokens": 854,
+      "output_tokens": 101,
+      "thinking_tokens": 0,
+      "seconds": 8.36,
+      "hit_limit": false,
+      "api_error": false,
+      "tool_ok": true,
+      "answer_ok": true
+    },
+    {
+      "category": "lettura",
+      "expected_tool": "lookup_word",
+      "question": "Come si legge 図書館?",
+      "answer": "Si legge **としょかん** (Toshokan) oppure **ずしょかん** (Zushokan), ma la lettura più comune e standard è **としょかん**. Significa \"biblioteca\".",
+      "tools_called": [
+        "lookup_word"
+      ],
+      "observations": [
+        "{\"found\": true, \"word\": \"図書館\", \"entries\": [{\"kanji\": [\"図書館\"], \"readings\": [\"としょかん\", \"ずしょかん\"], \"common\": true, \"senses\": [{\"pos\": [\"noun (common) (futsuumeishi)\"], \"meanings\": [\"library\"]}]}]}"
+      ],
+      "steps": 2,
+      "input_tokens": 763,
+      "output_tokens": 58,
+      "thinking_tokens": 0,
+      "seconds": 15.73,
+      "hit_limit": false,
+      "api_error": false,
+      "tool_ok": true,
+      "answer_ok": true
+    },
+    {
+      "category": "lettura",
+      "expected_tool": "lookup_word",
+      "question": "Qual è la lettura di 昨日?",
+      "answer": "La parola 昨日 ha due letture comuni:\n\n* **きのう** (kinou) - La lettura più comune e informale.\n* **さくじつ** (sakujitsu) - Una lettura più formale (spesso usata nel linguaggio lavorativo o scritto).",
+      "tools_called": [
+        "lookup_word"
+      ],
+      "observations": [
+        "{\"found\": true, \"word\": \"昨日\", \"entries\": [{\"kanji\": [\"昨日\"], \"readings\": [\"きのう\", \"さくじつ\"], \"common\": true, \"senses\": [{\"pos\": [\"noun (common) (futsuumeishi)\", \"adverb (fukushi)\"], \"meanings\": [\"yesterday\"]}]}]}"
+      ],
+      "steps": 2,
+      "input_tokens": 776,
+      "output_tokens": 75,
+      "thinking_tokens": 0,
+      "seconds": 7.74,
+      "hit_limit": false,
+      "api_error": false,
+      "tool_ok": true,
+      "answer_ok": true
+    },
+    {
+      "category": "lettura",
+      "expected_tool": "lookup_word",
+      "question": "Mi dici come si pronuncia 友達?",
+      "answer": "Si pronuncia **ともだち** (*tomodachi*) e significa \"amico\".",
+      "tools_called": [
+        "lookup_word"
+      ],
+      "observations": [
+        "{\"found\": true, \"word\": \"友達\", \"entries\": [{\"kanji\": [\"友達\", \"友だち\"], \"readings\": [\"ともだち\", \"トモダチ\"], \"common\": true, \"senses\": [{\"pos\": [\"noun (common) (futsuumeishi)\"], \"meanings\": [\"friend\", \"companion\"]}]}]}"
+      ],
+      "steps": 2,
+      "input_tokens": 780,
+      "output_tokens": 35,
+      "thinking_tokens": 0,
+      "seconds": 6.94,
+      "hit_limit": false,
+      "api_error": false,
+      "tool_ok": true,
+      "answer_ok": true
+    },
+    {
+      "category": "assente",
+      "expected_tool": "lookup_word",
+      "question": "Che cosa significa 山田太郎?",
+      "answer": "La parola \"山田太郎\" non si trova nel dizionario. \n\nDalla mia conoscenza generale, però, si tratta di un nome proprio di persona molto comune in Giappone, l'equivalente del nostro \"Mario Rossi\" (un nome fittizio usato come esempio o segnaposto). Più precisamente, è composto da due parti:\n- **山田 (Yamada)**: un cognome comune.\n- **太郎 (Tarō)**: un nome maschile tradizionale.",
+      "tools_called": [
+        "lookup_word"
+      ],
+      "observations": [
+        "{\"found\": false, \"word\": \"山田太郎\"}"
+      ],
+      "steps": 2,
+      "input_tokens": 710,
+      "output_tokens": 116,
+      "thinking_tokens": 0,
+      "seconds": 4.18,
+      "hit_limit": false,
+      "api_error": false,
+      "tool_ok": true,
+      "answer_ok": true
+    },
+    {
+      "category": "assente",
+      "expected_tool": "lookup_word",
+      "question": "Mi spieghi la parola ほげふが?",
+      "answer": "La parola \"ほげふが\" (hoge fuga) non è presente nel dizionario JMdict. \n\nDalla mia conoscenza generale, ti spiego che si tratta di termini metalinguistici (simili a \"pippo\" e \"pluto\" in italiano o \"foo\" e \"bar\" in inglese) usati spesso in informatica e programmazione come placeholder o esempi di variabili senza un significato specifico.",
+      "tools_called": [
+        "lookup_word"
+      ],
+      "observations": [
+        "{\"found\": false, \"word\": \"ほげふが\"}"
+      ],
+      "steps": 2,
+      "input_tokens": 722,
+      "output_tokens": 107,
+      "thinking_tokens": 0,
+      "seconds": 6.09,
+      "hit_limit": false,
+      "api_error": false,
+      "tool_ok": true,
+      "answer_ok": true
+    },
+    {
+      "category": "assente",
+      "expected_tool": "lookup_word",
+      "question": "Come si legge 蟷螂?",
+      "answer": "La parola \"蟷螂\" (mantide) non è presente nel dizionario principale (JMdict). \n\nDalla mia conoscenza generale, si legge **とうろう** (*tōrō*) o **kamatakiri** / **kamakiri** (più comunemente scritto come 蟷螂 o 鎌切), ma poiché non è nel dizionario, ti avviso che questa informazione non proviene dalla fonte verificata del dizionario.",
+      "tools_called": [
+        "lookup_word"
+      ],
+      "observations": [
+        "{\"found\": false, \"word\": \"蟷螂\"}"
+      ],
+      "steps": 2,
+      "input_tokens": 718,
+      "output_tokens": 117,
+      "thinking_tokens": 0,
+      "seconds": 3.56,
+      "hit_limit": false,
+      "api_error": false,
+      "tool_ok": true,
+      "answer_ok": true
+    },
+    {
+      "category": "quiz",
+      "expected_tool": "make_quiz",
+      "question": "Fammi un quiz di 2 domande.",
+      "answer": "Ecco la prima domanda del quiz:\n\nCosa significa la parola **シノニム** (lettura: *shinonimu*)?\n\nA) whole\nB) synonym\nC) Mecca\nD) disappointed love\n\nQual è la risposta corretta? (Scegli A, B, C o D)",
+      "tools_called": [
+        "make_quiz"
+      ],
+      "observations": [
+        "{\"questions\": [{\"word\": \"シノニム\", \"reading\": \"シノニム\", \"options\": {\"A\": \"whole\", \"B\": \"synonym\", \"C\": \"Mecca\", \"D\": \"disappointed love\"}, \"correct\": \"B\"}, {\"word\": \"移送\", \"reading\": \"いそう\", \"options\": {\"A\": \"Kansai dialect\", \"B\": \"measuring container\", \"C\": \"evening\", \"D\": \"transfer\"}, \"correct\": \"D\"}]}"
+      ],
+      "steps": 2,
+      "input_tokens": 806,
+      "output_tokens": 79,
+      "thinking_tokens": 0,
+      "seconds": 1.81,
+      "hit_limit": false,
+      "api_error": false,
+      "tool_ok": true,
+      "answer_ok": true
+    },
+    {
+      "category": "quiz",
+      "expected_tool": "make_quiz",
+      "question": "Vorrei ripassare: mettimi alla prova con 3 domande a scelta multipla.",
+      "answer": "Eccoti la prima domanda del quiz:\n\nCosa significa la parola **コンプレッサー**?\n\nA) Italy  \nB) compressor  \nC) pump-priming  \nD) brake  \n\nRispondi con la lettera corrispondente (A, B, C o D).",
+      "tools_called": [
+        "make_quiz"
+      ],
+      "observations": [
+        "{\"questions\": [{\"word\": \"コンプレッサー\", \"reading\": \"コンプレッサー\", \"options\": {\"A\": \"Italy\", \"B\": \"compressor\", \"C\": \"pump-priming\", \"D\": \"brake\"}, \"correct\": \"B\"}, {\"word\": \"測候所\", \"reading\": \"そっこうじょ\", \"options\": {\"A\": \"season\", \"B\": \"weather measurement station\", \"C\": \"importance\", \"D\": \"one grade\"}, \"correct\": \"B\"}, {\"word\": \"見る見る\", \"reading\": \"みるみる\", \"options\": {\"A\": \"very fast\", \"B\": \"bond\", \"C\": \"partn"
+      ],
+      "steps": 2,
+      "input_tokens": 886,
+      "output_tokens": 76,
+      "thinking_tokens": 0,
+      "seconds": 2.12,
+      "hit_limit": false,
+      "api_error": false,
+      "tool_ok": true,
+      "answer_ok": true
+    },
+    {
+      "category": "quiz",
+      "expected_tool": "make_quiz",
+      "question": "Interrogami sul vocabolario, ma solo 4 parole.",
+      "answer": "Ecco la prima domanda di quiz per te!\n\n**Domanda 1:**\nChe cosa significa la parola giapponese **徹底** (*tettei*)?\n\n* A) thoroughness\n* B) after death\n* C) new life\n* D) total\n\nDimmi la lettera della tua risposta (A, B, C o D).",
+      "tools_called": [
+        "make_quiz"
+      ],
+      "observations": [
+        "{\"questions\": [{\"word\": \"徹底\", \"reading\": \"てってい\", \"options\": {\"A\": \"thoroughness\", \"B\": \"after death\", \"C\": \"new life\", \"D\": \"total\"}, \"correct\": \"A\"}, {\"word\": \"地球儀\", \"reading\": \"ちきゅうぎ\", \"options\": {\"A\": \"flyweight\", \"B\": \"nickname\", \"C\": \"Earth globe (model)\", \"D\": \"things like\"}, \"correct\": \"C\"}, {\"word\": \"管制官\", \"reading\": \"かんせいかん\", \"options\": {\"A\": \"chromosome\", \"B\": \"mechanism\", \"C\": \"non-conf"
+      ],
+      "steps": 2,
+      "input_tokens": 920,
+      "output_tokens": 87,
+      "thinking_tokens": 0,
+      "seconds": 1.71,
+      "hit_limit": false,
+      "api_error": false,
+      "tool_ok": true,
+      "answer_ok": true
+    },
+    {
+      "category": "senza_tool",
+      "expected_tool": "none",
+      "question": "Ciao, come stai?",
+      "answer": "Ciao! Sto bene, grazie. E tu come stai? Vuoi studiare un po' di giapponese oggi?",
+      "tools_called": [],
+      "observations": [],
+      "steps": 1,
+      "input_tokens": 335,
+      "output_tokens": 24,
+      "thinking_tokens": 0,
+      "seconds": 0.99,
+      "hit_limit": false,
+      "api_error": false,
+      "tool_ok": true,
+      "answer_ok": true
+    },
+    {
+      "category": "senza_tool",
+      "expected_tool": "none",
+      "question": "Che tempo fa oggi a Tokyo?",
+      "answer": "Non ho accesso alle informazioni in tempo reale sul meteo, quindi non posso dirti che tempo fa oggi a Tokyo. Ti consiglio di controllare un sito o un'app di previsioni meteorologiche! \n\nSe vuoi, però, possiamo ripassare un po' di giapponese, magari imparando qualche parola legata al tempo atmosferico. Vuoi fare un quiz?",
+      "tools_called": [],
+      "observations": [],
+      "steps": 1,
+      "input_tokens": 337,
+      "output_tokens": 76,
+      "thinking_tokens": 0,
+      "seconds": 2.54,
+      "hit_limit": false,
+      "api_error": false,
+      "tool_ok": true,
+      "answer_ok": true
+    },
+    {
+      "category": "senza_tool",
+      "expected_tool": "none",
+      "question": "Cosa sai fare?",
+      "answer": "Posso aiutarti a studiare il giapponese in vari modi:\n\n1. **Cercare parole**: Posso cercare il significato e la lettura di parole giapponesi nel dizionario ufficiale.\n2. **Fare quiz**: Posso metterti alla prova con quiz di vocabolario a scelta multipla, proponendoti una domanda alla volta.\n\nDimmi pure cosa vorresti fare o chiedimi una parola da cercare!",
+      "tools_called": [],
+      "observations": [],
+      "steps": 1,
+      "input_tokens": 335,
+      "output_tokens": 89,
+      "thinking_tokens": 0,
+      "seconds": 0.86,
+      "hit_limit": false,
+      "api_error": false,
+      "tool_ok": true,
+      "answer_ok": true
+    },
+    {
+      "category": "senza_tool",
+      "expected_tool": "none",
+      "question": "Cosa è un buco nero?",
+      "answer": "La parola \"黒穴\" non è presente nel dizionario (la traduzione scientifica più comune in giapponese è ブラックホール, *burakku hōru*).\n\nDalla mia conoscenza generale, un **buco nero** è una regione dello spazio in cui il campo gravitazionale è così forte che nulla, nemmeno la luce o altre radiazioni elettromagnetiche, può sfuggire da esso. \n\nIn giapponese si chiama **ブラックホール** (*burakku hōru*).",
+      "tools_called": [
+        "lookup_word"
+      ],
+      "observations": [
+        "{\"found\": false, \"word\": \"黒穴\"}"
+      ],
+      "steps": 2,
+      "input_tokens": 712,
+      "output_tokens": 121,
+      "thinking_tokens": 0,
+      "seconds": 1.52,
+      "hit_limit": false,
+      "api_error": false,
+      "tool_ok": false,
+      "answer_ok": true
+    },
+    {
+      "category": "senza_tool",
+      "expected_tool": "none",
+      "question": "Quanto fa 2 + 2?",
+      "answer": "2 + 2 fa 4! \n\nPosso aiutarti con qualcos'altro riguardo al giapponese? (Ad esempio, vuoi cercare una parola o fare un quiz?)",
+      "tools_called": [],
+      "observations": [],
+      "steps": 1,
+      "input_tokens": 338,
+      "output_tokens": 37,
+      "thinking_tokens": 0,
+      "seconds": 0.7,
+      "hit_limit": false,
+      "api_error": false,
+      "tool_ok": true,
+      "answer_ok": true
+    }
+  ]
+}

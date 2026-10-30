@@ -29,8 +29,11 @@ def _usage(response) -> dict:
     meta = response.usage_metadata
     if meta is None:
         return {}
-    return {"input_tokens": meta.prompt_token_count, "output_tokens": meta.candidates_token_count}
-    
+    return {
+        "input_tokens": meta.prompt_token_count,
+        "output_tokens": meta.candidates_token_count,
+        "thinking_tokens": meta.thoughts_token_count,  # fatturati come output
+    }
 def _close(history: list, text: str) -> str:
     """Chiude il turno con un messaggio del modello, così i ruoli restano alternati."""
     history.append(types.Content(role="model", parts=[types.Part(text=text)]))

@@ -1,0 +1,32 @@
+# categoria | tool_atteso | domanda
+# Righe vuote e righe che iniziano con # sono ignorate.
+
+# --- parola: significato di una parola (kanji o kana) ---
+parola | lookup_word | Che cosa significa 買い物?
+parola | lookup_word | Mi spieghi la parola 船?
+parola | lookup_word | しんぶん, che vuol dire?
+parola | lookup_word | Cosa vuol dire パソコン?
+parola | lookup_word | Mi spieghi la parola ねんがじょう?
+parola | lookup_word | Cosa significa la parola 如何?
+
+# --- lettura: come si legge una parola in kanji ---
+lettura | lookup_word | Come si legge 図書館?
+lettura | lookup_word | Qual è la lettura di 昨日?
+lettura | lookup_word | Mi dici come si pronuncia 友達?
+
+# --- assente: parole che NON sono nel dizionario (solo se il controllo A dà ASSENTE) ---
+assente | lookup_word | Che cosa significa 山田太郎?
+assente | lookup_word | Mi spieghi la parola ほげふが?
+assente | lookup_word | Come si legge 蟷螂?
+
+# --- quiz: richiesta di un quiz ---
+quiz | make_quiz | Fammi un quiz di 2 domande.
+quiz | make_quiz | Vorrei ripassare: mettimi alla prova con 3 domande a scelta multipla.
+quiz | make_quiz | Interrogami sul vocabolario, ma solo 4 parole.
+
+# --- senza_tool: nessun tool deve essere chiamato ---
+senza_tool | none | Ciao, come stai?
+senza_tool | none | Che tempo fa oggi a Tokyo?
+senza_tool | none | Cosa sai fare?
+senza_tool | none | Cosa è un buco nero?
+senza_tool | none | Quanto fa 2 + 2?
