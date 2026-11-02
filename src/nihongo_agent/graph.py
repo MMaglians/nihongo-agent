@@ -79,6 +79,10 @@ def build_graph(client, model: str, *, trace: TraceLog | None = None,
         return response
 
     def router(state: State):
+        """
+        classifica la domanda, legge la risposta e scrive nello stato 
+        quale ramo seguire
+        """
         question = last_user_text(state["messages"])
         trace.event("user", text=question)
         config = types.GenerateContentConfig(
