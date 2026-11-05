@@ -126,3 +126,53 @@ def test_trace_has_the_same_events_as_v0_plus_route(tmp_path):
     run_turn_v1(graph, "t1", "猫?")
     kinds = [json.loads(line)["kind"] for line in path.read_text(encoding="utf-8").splitlines()]
     assert kinds == ["user", "model", "route", "model", "tool", "model", "final"]
+    
+
+# --- Giorno B: RAG sugli appunti e memoria dei progressi -------------------------------
+from nihongo_agent.notes import NotesIndex  # noqa: E402
+
+
+def test_retrieve_sends_notes_with_sources_and_notes_prompt(fake_embed):
+    chunks = [{"source": "lezione1.md › Particelle", "text": "は segna il tema: わたしは"},
+              {"source": "lezione1.md › Verbi", "text": "食べる significa mangiare"}]
+    notes = NotesIndex.build(chunks, fake_embed)
+    trace = TraceLog()
+    client = FakeClient(responses=[route_response("recupera"), text_response("Il tema [lezione1.md › Particelle]")])
+    graph = build_graph(client, "m", trace=trace, checkpointer=InMemorySaver(), notes=notes, top_k=1)
+    run_turn_v1(graph, "t1", "cosa ho scritto su は? わたしは")
+    contents, config = client.models.seen[1]
+    sent = " ".join(p.text or "" for c in contents for p in c.parts)
+    assert "[lezione1.md › Particelle]" in sent and "食べる" not in sent  # solo il pezzo migliore
+    assert "SOLO il contesto" in config.system_instruction
+    retrieved = [e for e in trace.events if e["kind"] == "retrieve"][0]
+    assert retrieved["sources"] == ["lezione1.md › Particelle"]
+    assert roles(graph) == ["user", "model"]  # gli appunti non restano in memoria
+
+
+def test_router_sees_previous_tutor_message():
+    client = FakeClient(responses=[route_response("rispondi"), text_response("Domanda: 猫? A) dog B) cat"),
+                                   route_response("usa_tool"), text_response("ok")])
+    graph = make(client)
+    run_turn_v1(graph, "t1", "ciao")
+    run_turn_v1(graph, "t1", "B")
+    router_prompt, _ = client.models.seen[2]
+    assert "A) dog B) cat" in router_prompt and "Messaggio dello studente: B" in router_prompt
+
+
+def test_quiz_answer_is_checked_by_the_tool_and_saved():
+    from nihongo_agent.tools_v1 import get_progress, make_quiz_v1
+    q = make_quiz_v1(n=1)["questions"][0]  # come se il modello avesse appena proposto il quiz
+    client = FakeClient(responses=[route_response("usa_tool"),
+                                   call_response("check_answer", {"word": q["word"], "letter": q["correct"]}),
+                                   text_response("Giusto!")])
+    graph = make(client)
+    assert run_turn_v1(graph, "t1", q["correct"]) == "Giusto!"
+    assert get_progress().summary()["correct"] == 1
+    _, config = client.models.seen[1]
+    names = {d.name for t in config.tools for d in t.function_declarations}
+    assert names == {"lookup_word", "make_quiz", "check_answer", "show_progress"}
+
+
+def test_v0_tools_are_unchanged():
+    from nihongo_agent.tools import ALL_DECLS
+    assert [d.name for d in ALL_DECLS] == ["lookup_word", "make_quiz"]
