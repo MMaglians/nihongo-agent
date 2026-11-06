@@ -1,2 +1,1 @@
-def main() -> None:
-    print("Hello from nihongo-agent!")
+"""nihongo-agent: tutor di giapponese con agente a tool, router LangGraph e RAG sugli appunti."""

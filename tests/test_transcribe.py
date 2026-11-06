@@ -6,6 +6,7 @@ from google.genai import errors, types
 from pypdf import PdfReader, PdfWriter
 
 from nihongo_agent.transcribe import page_blocks, transcribe_pdf
+from nihongo_agent.transcribe import Transcription, fix_page_numbers, page_blocks, transcribe_pdf
 
 
 def make_pdf(path, pages):
@@ -78,3 +79,11 @@ def test_page_range_and_quota_retry(tmp_path):
                              sleep=waits.append, log=lambda *a: None)
     assert [p.name for p in written] == ["q_p011-013.md"]
     assert 60 in waits and client.models.pages_sent == [3, 3]
+    
+def test_relative_page_numbers_are_fixed():
+    result = Transcription(markdown="<!-- pagina 1 -->\nkore\n<!-- pagina 7 -->\nsore",
+                           doubts=[{"page": 2, "text": "x", "issue": "y"}, {"page": 9, "text": "x", "issue": "y"}])
+    fixed = fix_page_numbers(result, 6, 10)
+    assert "<!-- pagina 6 -->" in fixed.markdown and "<!-- pagina 7 -->" in fixed.markdown
+    assert [d.page for d in fixed.doubts] == [7, 9]
+    assert fix_page_numbers(result, 1, 5) == result  # primo blocco: numeri già giusti

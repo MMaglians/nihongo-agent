@@ -1,6 +1,7 @@
 """Trascrizione degli appunti scritti a mano (PDF di Goodnotes) in Markdown, con elenco dei dubbi."""
 import io
 import json
+import re
 import time
 from pathlib import Path
 
@@ -63,6 +64,18 @@ def transcribe_block(client, model: str, pdf_bytes: bytes, first: int, last: int
     return Transcription.model_validate_json(response.text or "")
 
 
+def fix_page_numbers(result: Transcription, first: int, last: int) -> Transcription:
+    """Il modello a volte numera le pagine del blocco da 1: le riporta ai numeri del quaderno."""
+    size, offset = last - first + 1, first - 1
+    if offset == 0:
+        return result
+    fix = lambda n: n + offset if 1 <= n <= size else n  # noqa: E731
+    markdown = re.sub(r"<!-- pagina (\d+) -->", lambda m: f"<!-- pagina {fix(int(m.group(1)))} -->",
+                      result.markdown)
+    doubts = [d.model_copy(update={"page": fix(d.page)}) for d in result.doubts]
+    return Transcription(markdown=markdown, doubts=doubts)
+
+
 def write_review_list(out_dir: Path) -> Path:
     """Raccoglie tutti i dubbi in REVISIONE.md, una lista di controllo da spuntare."""
     lines = ["# Revisione degli appunti trascritti", ""]
@@ -103,6 +116,7 @@ def transcribe_pdf(client, model: str, pdf_path: Path, out_dir: Path, *, pages_p
             log("  quota al minuto superata: attendo 60 s e riprovo una volta")
             sleep(60)
             result = transcribe_block(client, model, data, first, last)
+        result = fix_page_numbers(result, first, last)
         target.write_text(result.markdown.strip() + "\n", encoding="utf-8")
         target.with_name(target.stem + ".doubts.json").write_text(
             json.dumps([d.model_dump() for d in result.doubts], ensure_ascii=False, indent=2),

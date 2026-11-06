@@ -1,0 +1,699 @@
+{
+  "model": "gemini-3.5-flash-lite",
+  "date": "2026-11-06",
+  "rows": [
+    {
+      "category": "parola",
+      "expected_tool": "lookup_word",
+      "question": "Che cosa significa 買い物?",
+      "answer": "La parola 買い物 (かいもの, *kaimono*) significa **shopping** o **acquisti**.",
+      "route": "usa_tool",
+      "tools_called": [
+        "lookup_word"
+      ],
+      "observations": [
+        "{\"found\": true, \"word\": \"買い物\", \"entries\": [{\"kanji\": [\"買い物\", \"買物\", \"買いもの\", \"買いもん\"], \"readings\": [\"かいもの\", \"かいもん\"], \"common\": true, \"senses\": [{\"pos\": [\"noun (common) (futsuumeishi)\", \"noun or participle which takes the aux. verb suru\", \"intransitive verb\"], \"meanings\": [\"shopping\", \"purchased goods\"]}]}]}"
+      ],
+      "retrieved": null,
+      "calls": 3,
+      "input_tokens": 1406,
+      "output_tokens": 51,
+      "thinking_tokens": 0,
+      "seconds": 2.42,
+      "hit_limit": false,
+      "api_error": false,
+      "expected_route": "usa_tool",
+      "tool_ok": true,
+      "route_ok": true,
+      "answer_ok": true
+    },
+    {
+      "category": "parola",
+      "expected_tool": "lookup_word",
+      "question": "Mi spieghi la parola 船?",
+      "answer": "La parola **船** si legge **ふね** (*fune*) e significa nave, barca o imbarcazione.",
+      "route": "usa_tool",
+      "tools_called": [
+        "lookup_word"
+      ],
+      "observations": [
+        "{\"found\": true, \"word\": \"船\", \"entries\": [{\"kanji\": [\"船\", \"舟\", \"槽\"], \"readings\": [\"ふね\"], \"common\": true, \"senses\": [{\"pos\": [\"noun (common) (futsuumeishi)\"], \"meanings\": [\"ship\", \"boat\", \"watercraft\", \"vessel\"]}, {\"pos\": [\"noun (common) (futsuumeishi)\"], \"meanings\": [\"tank\", \"tub\", \"vat\", \"trough\"]}, {\"pos\": [\"noun, used as a suffix\", \"counter\"], \"meanings\": [\"counter for boat-shaped containers (e."
+      ],
+      "retrieved": null,
+      "calls": 3,
+      "input_tokens": 1459,
+      "output_tokens": 56,
+      "thinking_tokens": 0,
+      "seconds": 1.85,
+      "hit_limit": false,
+      "api_error": false,
+      "expected_route": "usa_tool",
+      "tool_ok": true,
+      "route_ok": true,
+      "answer_ok": true
+    },
+    {
+      "category": "parola",
+      "expected_tool": "lookup_word",
+      "question": "しんぶん, che vuol dire?",
+      "answer": "\"しんぶん\" (新聞) significa **giornale**.",
+      "route": "usa_tool",
+      "tools_called": [
+        "lookup_word"
+      ],
+      "observations": [
+        "{\"found\": true, \"word\": \"しんぶん\", \"entries\": [{\"kanji\": [\"新聞\"], \"readings\": [\"しんぶん\"], \"common\": true, \"senses\": [{\"pos\": [\"noun (common) (futsuumeishi)\"], \"meanings\": [\"newspaper\"]}]}]}"
+      ],
+      "retrieved": null,
+      "calls": 3,
+      "input_tokens": 1370,
+      "output_tokens": 45,
+      "thinking_tokens": 0,
+      "seconds": 2.06,
+      "hit_limit": false,
+      "api_error": false,
+      "expected_route": "usa_tool",
+      "tool_ok": true,
+      "route_ok": true,
+      "answer_ok": true
+    },
+    {
+      "category": "parola",
+      "expected_tool": "lookup_word",
+      "question": "Cosa vuol dire パソコン?",
+      "answer": "La parola **パソコン** (pasokon) significa \"computer personale\" o \"PC\" (è un'abbreviazione di *personal computer*).",
+      "route": "usa_tool",
+      "tools_called": [
+        "lookup_word"
+      ],
+      "observations": [
+        "{\"found\": true, \"word\": \"パソコン\", \"entries\": [{\"kanji\": [], \"readings\": [\"パソコン\"], \"common\": true, \"senses\": [{\"pos\": [\"noun (common) (futsuumeishi)\"], \"meanings\": [\"personal computer\", \"PC\"]}]}]}"
+      ],
+      "retrieved": null,
+      "calls": 3,
+      "input_tokens": 1362,
+      "output_tokens": 61,
+      "thinking_tokens": 0,
+      "seconds": 2.25,
+      "hit_limit": false,
+      "api_error": false,
+      "expected_route": "usa_tool",
+      "tool_ok": true,
+      "route_ok": true,
+      "answer_ok": true
+    },
+    {
+      "category": "parola",
+      "expected_tool": "lookup_word",
+      "question": "Mi spieghi la parola ねんがじょう?",
+      "answer": "La parola **ねんがじょう** (scritta in kanji come **年賀状**) significa **cartolina di auguri per il capodanno** (*New Year's card*). \n\nIn Giappone è una tradizione molto sentita: si spediscono agli amici, parenti e colleghi in modo che arrivino esattamente il 1° gennaio.",
+      "route": "usa_tool",
+      "tools_called": [
+        "lookup_word"
+      ],
+      "observations": [
+        "{\"found\": true, \"word\": \"ねんがじょう\", \"entries\": [{\"kanji\": [\"年賀状\"], \"readings\": [\"ねんがじょう\"], \"common\": true, \"senses\": [{\"pos\": [\"noun (common) (futsuumeishi)\"], \"meanings\": [\"New Year's card\"]}]}]}"
+      ],
+      "retrieved": null,
+      "calls": 3,
+      "input_tokens": 1391,
+      "output_tokens": 108,
+      "thinking_tokens": 0,
+      "seconds": 2.06,
+      "hit_limit": false,
+      "api_error": false,
+      "expected_route": "usa_tool",
+      "tool_ok": true,
+      "route_ok": true,
+      "answer_ok": true
+    },
+    {
+      "category": "parola",
+      "expected_tool": "lookup_word",
+      "question": "Cosa significa la parola 如何?",
+      "answer": "La parola **如何** può essere letta in due modi principali, entrambi significano \"come\", \"in che modo\" o \"che ne dici di\":\n\n1. **どう** (*dō*) – \"come\"\n2. **いかが** (*ikaga*) – la forma più formale o gentile per dire \"come\" o \"che ne dici di\".",
+      "route": "usa_tool",
+      "tools_called": [
+        "lookup_word"
+      ],
+      "observations": [
+        "{\"found\": true, \"word\": \"如何\", \"entries\": [{\"kanji\": [\"如何\", \"何う\"], \"readings\": [\"どう\"], \"common\": true, \"senses\": [{\"pos\": [\"adverb (fukushi)\"], \"meanings\": [\"how\", \"in what way\", \"how about\"]}]}, {\"kanji\": [\"如何\"], \"readings\": [\"いかが\"], \"common\": true, \"senses\": [{\"pos\": [\"adverb (fukushi)\"], \"meanings\": [\"how\", \"in what way\", \"how about\"]}, {\"pos\": [\"adjectival nouns or quasi-adjectives (keiyodoshi)"
+      ],
+      "retrieved": null,
+      "calls": 3,
+      "input_tokens": 1457,
+      "output_tokens": 106,
+      "thinking_tokens": 0,
+      "seconds": 3.26,
+      "hit_limit": false,
+      "api_error": false,
+      "expected_route": "usa_tool",
+      "tool_ok": true,
+      "route_ok": true,
+      "answer_ok": true
+    },
+    {
+      "category": "lettura",
+      "expected_tool": "lookup_word",
+      "question": "Come si legge 図書館?",
+      "answer": "La parola **図書館** si legge **としょかん** (toshokan) oppure **ずしょかん** (zushokan), ma la lettura più comune e standard è **としょかん**. Significa \"biblioteca\".",
+      "route": "usa_tool",
+      "tools_called": [
+        "lookup_word"
+      ],
+      "observations": [
+        "{\"found\": true, \"word\": \"図書館\", \"entries\": [{\"kanji\": [\"図書館\"], \"readings\": [\"としょかん\", \"ずしょかん\"], \"common\": true, \"senses\": [{\"pos\": [\"noun (common) (futsuumeishi)\"], \"meanings\": [\"library\"]}]}]}"
+      ],
+      "retrieved": null,
+      "calls": 3,
+      "input_tokens": 1366,
+      "output_tokens": 76,
+      "thinking_tokens": 0,
+      "seconds": 1.84,
+      "hit_limit": false,
+      "api_error": false,
+      "expected_route": "usa_tool",
+      "tool_ok": true,
+      "route_ok": true,
+      "answer_ok": true
+    },
+    {
+      "category": "lettura",
+      "expected_tool": "lookup_word",
+      "question": "Qual è la lettura di 昨日?",
+      "answer": "La parola **昨日** ha due letture principali:\n\n* **きのう** (*kinō*), che è la lettura più comune e informale (kun'yomi).\n* **さくじつ** (*sakujitsu*), che è la forma più formale (on'yomi).",
+      "route": "usa_tool",
+      "tools_called": [
+        "lookup_word"
+      ],
+      "observations": [
+        "{\"found\": true, \"word\": \"昨日\", \"entries\": [{\"kanji\": [\"昨日\"], \"readings\": [\"きのう\", \"さくじつ\"], \"common\": true, \"senses\": [{\"pos\": [\"noun (common) (futsuumeishi)\", \"adverb (fukushi)\"], \"meanings\": [\"yesterday\"]}]}]}"
+      ],
+      "retrieved": null,
+      "calls": 3,
+      "input_tokens": 1380,
+      "output_tokens": 93,
+      "thinking_tokens": 0,
+      "seconds": 3.07,
+      "hit_limit": false,
+      "api_error": false,
+      "expected_route": "usa_tool",
+      "tool_ok": true,
+      "route_ok": true,
+      "answer_ok": true
+    },
+    {
+      "category": "lettura",
+      "expected_tool": "lookup_word",
+      "question": "Mi dici come si pronuncia 友達?",
+      "answer": "Si pronuncia **ともだち** (*tomodachi*) e significa \"amico\".",
+      "route": "usa_tool",
+      "tools_called": [
+        "lookup_word"
+      ],
+      "observations": [
+        "{\"found\": true, \"word\": \"友達\", \"entries\": [{\"kanji\": [\"友達\", \"友だち\"], \"readings\": [\"ともだち\", \"トモダチ\"], \"common\": true, \"senses\": [{\"pos\": [\"noun (common) (futsuumeishi)\"], \"meanings\": [\"friend\", \"companion\"]}]}]}"
+      ],
+      "retrieved": null,
+      "calls": 3,
+      "input_tokens": 1386,
+      "output_tokens": 48,
+      "thinking_tokens": 0,
+      "seconds": 2.05,
+      "hit_limit": false,
+      "api_error": false,
+      "expected_route": "usa_tool",
+      "tool_ok": true,
+      "route_ok": true,
+      "answer_ok": true
+    },
+    {
+      "category": "assente",
+      "expected_tool": "lookup_word",
+      "question": "Che cosa significa 山田太郎?",
+      "answer": "Le parole inserite non sono presenti nel dizionario. Tuttavia, dalla mia conoscenza generale, **山田太郎** (Yamada Tarō) è un nome e cognome maschile giapponese molto comune, spesso usato come nome fittizio o generico (l'equivalente del nostro \"Mario Rossi\"). \n\n* **山田 (Yamada)**: cognome comune (significa letteralmente \"riso di montagna\").\n* **太郎 (Tarō)**: nome proprio maschile molto tradizionale (spesso dato al primogenito).",
+      "route": "usa_tool",
+      "tools_called": [
+        "lookup_word",
+        "lookup_word"
+      ],
+      "observations": [
+        "{\"found\": false, \"word\": \"山田\"}",
+        "{\"found\": false, \"word\": \"太郎\"}"
+      ],
+      "retrieved": null,
+      "calls": 3,
+      "input_tokens": 1344,
+      "output_tokens": 155,
+      "thinking_tokens": 0,
+      "seconds": 2.94,
+      "hit_limit": false,
+      "api_error": false,
+      "expected_route": "usa_tool",
+      "tool_ok": true,
+      "route_ok": true,
+      "answer_ok": true
+    },
+    {
+      "category": "assente",
+      "expected_tool": "lookup_word",
+      "question": "Mi spieghi la parola ほげふが?",
+      "answer": "La parola \"ほげふが\" (Hogefuga) non è presente nel dizionario ufficiale (JMdict). \n\nDalla mia conoscenza generale, ti segnalo che si tratta di un termine informatico equivalente al classico \"foo bar\" anglosassone: viene usato come segnaposto (placeholder) nei codici di programmazione o negli esempi quando non serve un significato reale.",
+      "route": "usa_tool",
+      "tools_called": [
+        "lookup_word"
+      ],
+      "observations": [
+        "{\"found\": false, \"word\": \"ほげふが\"}"
+      ],
+      "retrieved": null,
+      "calls": 3,
+      "input_tokens": 1330,
+      "output_tokens": 113,
+      "thinking_tokens": 0,
+      "seconds": 2.81,
+      "hit_limit": false,
+      "api_error": false,
+      "expected_route": "usa_tool",
+      "tool_ok": true,
+      "route_ok": true,
+      "answer_ok": true
+    },
+    {
+      "category": "assente",
+      "expected_tool": "lookup_word",
+      "question": "Come si legge 蟷螂?",
+      "answer": "La parola 蟷螂 non è presente nel dizionario comune. \n\nDalla mia conoscenza generale, però, si legge **とうろう (tōrō)** e significa \"mantide religiosa\" (tieni presente che questa informazione non proviene dal dizionario ufficiale del sistema).",
+      "route": "usa_tool",
+      "tools_called": [
+        "lookup_word"
+      ],
+      "observations": [
+        "{\"found\": false, \"word\": \"蟷螂\"}"
+      ],
+      "retrieved": null,
+      "calls": 3,
+      "input_tokens": 1324,
+      "output_tokens": 92,
+      "thinking_tokens": 0,
+      "seconds": 3.84,
+      "hit_limit": false,
+      "api_error": false,
+      "expected_route": "usa_tool",
+      "tool_ok": true,
+      "route_ok": true,
+      "answer_ok": true
+    },
+    {
+      "category": "quiz",
+      "expected_tool": "make_quiz",
+      "question": "Fammi un quiz di 2 domande.",
+      "answer": "Eccoti la prima domanda del quiz!\n\n**Domanda 1:**\nCosa significa **飲む** (*nomu*)?\n\nA) sweetness\nB) mountainous region\nC) to drink\nD) rook\n\nRispondi con la lettera corrispondente (A, B, C o D).",
+      "route": "usa_tool",
+      "tools_called": [
+        "make_quiz"
+      ],
+      "observations": [
+        "{\"questions\": [{\"word\": \"飲む\", \"reading\": \"のむ\", \"options\": {\"A\": \"sweetness\", \"B\": \"mountainous region\", \"C\": \"to drink\", \"D\": \"rook\"}, \"correct\": \"C\"}, {\"word\": \"門前\", \"reading\": \"もんぜん\", \"options\": {\"A\": \"abortion\", \"B\": \"before the gate\", \"C\": \"eviction\", \"D\": \"encroachment\"}, \"correct\": \"B\"}], \"review\": false}"
+      ],
+      "retrieved": null,
+      "calls": 3,
+      "input_tokens": 1418,
+      "output_tokens": 94,
+      "thinking_tokens": 0,
+      "seconds": 3.31,
+      "hit_limit": false,
+      "api_error": false,
+      "expected_route": "usa_tool",
+      "tool_ok": true,
+      "route_ok": true,
+      "answer_ok": true
+    },
+    {
+      "category": "quiz",
+      "expected_tool": "make_quiz",
+      "question": "Vorrei ripassare: mettimi alla prova con 3 domande a scelta multipla.",
+      "answer": "Eccola la prima domanda del quiz:\n\n**路線図**\n\nA) route map (for buses, trains, etc.)\nB) table\nC) rooftop\nD) neck\n\nQual è la risposta corretta (A, B, C o D)?",
+      "route": "usa_tool",
+      "tools_called": [
+        "make_quiz"
+      ],
+      "observations": [
+        "{\"questions\": [{\"word\": \"路線図\", \"reading\": \"ろせんず\", \"options\": {\"A\": \"route map (for buses, trains, etc.)\", \"B\": \"table\", \"C\": \"rooftop\", \"D\": \"neck\"}, \"correct\": \"A\"}], \"review\": true}"
+      ],
+      "retrieved": null,
+      "calls": 3,
+      "input_tokens": 1408,
+      "output_tokens": 85,
+      "thinking_tokens": 0,
+      "seconds": 3.53,
+      "hit_limit": false,
+      "api_error": false,
+      "expected_route": "usa_tool",
+      "tool_ok": true,
+      "route_ok": true,
+      "answer_ok": true
+    },
+    {
+      "category": "quiz",
+      "expected_tool": "make_quiz",
+      "question": "Interrogami sul vocabolario, ma solo 4 parole.",
+      "answer": "Ecco la prima domanda del quiz:\n\n**Parola:** 一先ず (ひとまず)\n\nA) for now  \nB) unsatisfied  \nC) quality  \nD) only  \n\nQual è la risposta corretta? (A, B, C o D)",
+      "route": "usa_tool",
+      "tools_called": [
+        "make_quiz"
+      ],
+      "observations": [
+        "{\"questions\": [{\"word\": \"一先ず\", \"reading\": \"ひとまず\", \"options\": {\"A\": \"for now\", \"B\": \"unsatisfied\", \"C\": \"quality\", \"D\": \"only\"}, \"correct\": \"A\"}, {\"word\": \"ミッドナイト\", \"reading\": \"ミッドナイト\", \"options\": {\"A\": \"speed per second\", \"B\": \"bargain\", \"C\": \"midnight\", \"D\": \"Communist Party\"}, \"correct\": \"C\"}, {\"word\": \"埋める\", \"reading\": \"うめる\", \"options\": {\"A\": \"high cut (leotard, swimsuit)\", \"B\": \"beginning of t"
+      ],
+      "retrieved": null,
+      "calls": 3,
+      "input_tokens": 1550,
+      "output_tokens": 84,
+      "thinking_tokens": 0,
+      "seconds": 2.6,
+      "hit_limit": false,
+      "api_error": false,
+      "expected_route": "usa_tool",
+      "tool_ok": true,
+      "route_ok": true,
+      "answer_ok": true
+    },
+    {
+      "category": "senza_tool",
+      "expected_tool": "none",
+      "question": "Ciao, come stai?",
+      "answer": "Ciao! Sto bene, grazie. E tu come stai? \n\nRicorda che al momento non ho accesso al dizionario, quindi se mi chiedi il significato o la lettura di una parola non potrò verificarla. Vuoi fare un quiz di giapponese per esercitarti?",
+      "route": "rispondi",
+      "tools_called": [],
+      "observations": [],
+      "retrieved": null,
+      "calls": 2,
+      "input_tokens": 300,
+      "output_tokens": 72,
+      "thinking_tokens": 0,
+      "seconds": 3.7,
+      "hit_limit": false,
+      "api_error": false,
+      "expected_route": "rispondi",
+      "tool_ok": true,
+      "route_ok": true,
+      "answer_ok": true
+    },
+    {
+      "category": "senza_tool",
+      "expected_tool": "none",
+      "question": "Che tempo fa oggi a Tokyo?",
+      "answer": "Non lo so con certezza perché non posso controllare il meteo in tempo reale, ma in questo periodo a Tokyo di solito fa abbastanza fresco o freddo! Vuoi fare un quiz di giapponese per passare il tempo?",
+      "route": "rispondi",
+      "tools_called": [],
+      "observations": [],
+      "retrieved": null,
+      "calls": 2,
+      "input_tokens": 303,
+      "output_tokens": 58,
+      "thinking_tokens": 0,
+      "seconds": 1.43,
+      "hit_limit": false,
+      "api_error": false,
+      "expected_route": "rispondi",
+      "tool_ok": true,
+      "route_ok": true,
+      "answer_ok": true
+    },
+    {
+      "category": "senza_tool",
+      "expected_tool": "none",
+      "question": "Cosa sai fare?",
+      "answer": "Ciao! Posso farti da tutor di giapponese. Posso spiegarti parole (usando il dizionario quando disponibile) e farti dei quiz a scelta multipla (opzioni A-D) per testare la tua preparazione. \n\nIn questo momento, però, non ho accesso al dizionario: se mi chiedi il significato o la lettura di una parola, non posso verificarla (dovrai chiedermela di nuovo più tardi). \n\nVuoi iniziare un quiz?",
+      "route": "rispondi",
+      "tools_called": [],
+      "observations": [],
+      "retrieved": null,
+      "calls": 2,
+      "input_tokens": 298,
+      "output_tokens": 115,
+      "thinking_tokens": 0,
+      "seconds": 3.12,
+      "hit_limit": false,
+      "api_error": false,
+      "expected_route": "rispondi",
+      "tool_ok": true,
+      "route_ok": true,
+      "answer_ok": true
+    },
+    {
+      "category": "senza_tool",
+      "expected_tool": "none",
+      "question": "Cosa è un buco nero?",
+      "answer": "Un buco nero è una regione dello spazio in cui il campo gravitazionale è così forte che nulla, nemmeno la luce, può sfuggire. \n\nDal momento che in questo turno non ho accesso al dizionario, non posso verificare la traduzione o la lettura di parole specifiche in giapponese: se ti servono, chiedimelo pure nel prossimo turno!",
+      "route": "rispondi",
+      "tools_called": [],
+      "observations": [],
+      "retrieved": null,
+      "calls": 2,
+      "input_tokens": 304,
+      "output_tokens": 82,
+      "thinking_tokens": 0,
+      "seconds": 1.79,
+      "hit_limit": false,
+      "api_error": false,
+      "expected_route": "rispondi",
+      "tool_ok": true,
+      "route_ok": true,
+      "answer_ok": true
+    },
+    {
+      "category": "senza_tool",
+      "expected_tool": "none",
+      "question": "Quanto fa 2 + 2?",
+      "answer": "2 + 2 fa 4! \n\nHai qualche domanda sul giapponese o vuoi fare un quiz?",
+      "route": "rispondi",
+      "tools_called": [],
+      "observations": [],
+      "retrieved": null,
+      "calls": 2,
+      "input_tokens": 305,
+      "output_tokens": 35,
+      "thinking_tokens": 0,
+      "seconds": 2.72,
+      "hit_limit": false,
+      "api_error": false,
+      "expected_route": "rispondi",
+      "tool_ok": true,
+      "route_ok": true,
+      "answer_ok": true
+    },
+    {
+      "category": "appunti",
+      "expected_tool": "none",
+      "question": "Come si dicono i giorni della settimana in giapponese?",
+      "answer": "[omessa: contenuto degli appunti privati]",
+      "route": "usa_tool",
+      "tools_called": [],
+      "observations": [],
+      "retrieved": null,
+      "calls": 2,
+      "input_tokens": 716,
+      "output_tokens": 245,
+      "thinking_tokens": 0,
+      "seconds": 3.16,
+      "hit_limit": false,
+      "api_error": false,
+      "expected_route": "recupera",
+      "tool_ok": true,
+      "route_ok": false,
+      "answer_ok": false
+    },
+    {
+      "category": "appunti",
+      "expected_tool": "none",
+      "question": "Quale è la struttura grammaticale per chiedere un permesso?",
+      "answer": "[omessa: contenuto degli appunti privati]",
+      "route": "recupera",
+      "tools_called": [],
+      "observations": [],
+      "retrieved": {
+        "scores": [
+          0.643,
+          0.623,
+          0.615,
+          0.602
+        ]
+      },
+      "calls": 2,
+      "input_tokens": 1819,
+      "output_tokens": 62,
+      "thinking_tokens": 0,
+      "seconds": 3.57,
+      "hit_limit": false,
+      "api_error": false,
+      "expected_route": "recupera",
+      "tool_ok": true,
+      "route_ok": true,
+      "answer_ok": true
+    },
+    {
+      "category": "appunti",
+      "expected_tool": "none",
+      "question": "Cosa ho scritto su Imasu e Arimasu?",
+      "answer": "[omessa: contenuto degli appunti privati]",
+      "route": "recupera",
+      "tools_called": [],
+      "observations": [],
+      "retrieved": {
+        "scores": [
+          0.729,
+          0.7,
+          0.68,
+          0.677
+        ]
+      },
+      "calls": 2,
+      "input_tokens": 1845,
+      "output_tokens": 161,
+      "thinking_tokens": 0,
+      "seconds": 1.94,
+      "hit_limit": false,
+      "api_error": false,
+      "expected_route": "recupera",
+      "tool_ok": true,
+      "route_ok": true,
+      "answer_ok": true
+    },
+    {
+      "category": "appunti",
+      "expected_tool": "none",
+      "question": "Cosa ho scritto su yomimasu?",
+      "answer": "[omessa: contenuto degli appunti privati]",
+      "route": "recupera",
+      "tools_called": [],
+      "observations": [],
+      "retrieved": {
+        "scores": [
+          0.704,
+          0.702,
+          0.7,
+          0.682
+        ]
+      },
+      "calls": 2,
+      "input_tokens": 1841,
+      "output_tokens": 150,
+      "thinking_tokens": 0,
+      "seconds": 3.29,
+      "hit_limit": false,
+      "api_error": false,
+      "expected_route": "recupera",
+      "tool_ok": true,
+      "route_ok": true,
+      "answer_ok": true
+    },
+    {
+      "category": "appunti",
+      "expected_tool": "none",
+      "question": "Cpsa vuol dire 読みます?",
+      "answer": "[omessa: contenuto degli appunti privati]",
+      "route": "usa_tool",
+      "tools_called": [
+        "lookup_word"
+      ],
+      "observations": [
+        "{\"found\": false, \"word\": \"読みます\"}"
+      ],
+      "retrieved": null,
+      "calls": 3,
+      "input_tokens": 1320,
+      "output_tokens": 101,
+      "thinking_tokens": 0,
+      "seconds": 2.83,
+      "hit_limit": false,
+      "api_error": false,
+      "expected_route": "recupera",
+      "tool_ok": false,
+      "route_ok": false,
+      "answer_ok": false
+    },
+    {
+      "category": "appunti",
+      "expected_tool": "none",
+      "question": "Quale è la traduzione di 覚えます?",
+      "answer": "[omessa: contenuto degli appunti privati]",
+      "route": "usa_tool",
+      "tools_called": [
+        "lookup_word"
+      ],
+      "observations": [
+        "{\"found\": false, \"word\": \"覚えます\"}"
+      ],
+      "retrieved": null,
+      "calls": 3,
+      "input_tokens": 1326,
+      "output_tokens": 81,
+      "thinking_tokens": 0,
+      "seconds": 5.82,
+      "hit_limit": false,
+      "api_error": false,
+      "expected_route": "recupera",
+      "tool_ok": false,
+      "route_ok": false,
+      "answer_ok": false
+    },
+    {
+      "category": "appunti_assente",
+      "expected_tool": "none",
+      "question": "Cosa ho scritto su tokoro?",
+      "answer": "[omessa: contenuto degli appunti privati]",
+      "route": "recupera",
+      "tools_called": [],
+      "observations": [],
+      "retrieved": {
+        "scores": [
+          0.675,
+          0.659,
+          0.651,
+          0.649
+        ]
+      },
+      "calls": 2,
+      "input_tokens": 1593,
+      "output_tokens": 194,
+      "thinking_tokens": 0,
+      "seconds": 3.5,
+      "hit_limit": false,
+      "api_error": false,
+      "expected_route": "recupera",
+      "tool_ok": true,
+      "route_ok": true,
+      "answer_ok": true
+    },
+    {
+      "category": "appunti_assente",
+      "expected_tool": "none",
+      "question": "Cosa ho scritto su agemasu e moraimasu?",
+      "answer": "[omessa: contenuto degli appunti privati]",
+      "route": "recupera",
+      "tools_called": [],
+      "observations": [],
+      "retrieved": {
+        "scores": [
+          0.699,
+          0.692,
+          0.688,
+          0.679
+        ]
+      },
+      "calls": 2,
+      "input_tokens": 1847,
+      "output_tokens": 35,
+      "thinking_tokens": 0,
+      "seconds": 2.4,
+      "hit_limit": false,
+      "api_error": false,
+      "expected_route": "recupera",
+      "tool_ok": true,
+      "route_ok": true,
+      "answer_ok": true
+    }
+  ]
+}
