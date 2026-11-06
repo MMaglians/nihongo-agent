@@ -34,3 +34,39 @@ Decision: no persistence in v0. Why: persistent memory is the subject of v1.
 ## 8. Small hand-labelled evaluation first
 Decision: 20 questions, Wilson intervals, criteria and targets written before the run.
 Limits: one labeller, single run, single-turn. Next: bootstrap and paired tests (week 7).
+
+## 9. LangGraph for v1, the v0 loop kept as baseline
+Decision: v1 is a LangGraph state graph (router, tool loop, retrieval); `agent.py` and the v0
+tool declarations are unchanged. Why: explicit control flow, per-thread checkpoints, and an
+honest paired comparison with v0 on the same questions.
+
+## 10. A router with structured output
+Decision: one extra model call classifies each message (use tools / retrieve / answer) with a
+Pydantic schema; on invalid output it falls back to the tool branch. It also sees the last
+tutor message (max 300 characters), so a bare "B" is read as a quiz answer.
+Cost: one more call per turn (see the evaluation).
+
+## 11. Retrieved notes are sent, not stored
+Decision: retrieved chunks enter the context window only for the current turn and are never
+written to the conversation history. Why: the history does not fill up with repeated chunks.
+
+## 12. RAG with Gemini embeddings and numpy
+Decision: gemini-embedding-001 at 768 dimensions, normalised vectors, cosine similarity with
+numpy, top 4; chunks split by Markdown headings (max 1000 characters); a SHA-256 fingerprint
+rebuilds the index only when notes or model change. Why: a few hundred chunks do not need FAISS.
+
+## 13. Handwritten notes: transcribe once, review by hand, index only reviewed pages
+Decision: Goodnotes PDF split into 5-page blocks, transcribed by Gemini with structured output
+(Markdown + list of doubts), never auto-corrected; only pages I reviewed are indexed.
+Why: a misread word would become a "fact" of my notes. Notes, PDFs and transcripts are private
+and never committed. Course material (Marugoto) is used only as a personal reference, not indexed:
+its terms allow personal use only.
+
+## 14. Progress memory in SQLite, quiz checked by code
+Decision: quiz questions are stored as pending; `check_answer` compares the letter with the
+stored one and records the result; words wrong more often than right are offered for review.
+Why: the model no longer decides whether an answer is correct; progress survives sessions.
+LangGraph's in-memory store would be lost on exit.
+
+## 15. Private evaluation results, public redacted copy
+Decision: full v1 results stay in `data/` (ignored); `eval/results_v1.json` replaces answers to notes questions with a placeholder.

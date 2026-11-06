@@ -1,9 +1,9 @@
 """Fixture comuni: un mini dizionario nello stesso formato di JMdict (nessun file vero)."""
 import pytest
 
-from nihongo_agent import tools
+from nihongo_agent import tools, tools_v1
 from nihongo_agent.dictionary import Dictionary
-
+from nihongo_agent.progress import ProgressStore
 
 def make_word(wid, kanji, kana, pos, glosses, common=True):
     return {
@@ -36,3 +36,26 @@ def sample_dictionary():
     tools.set_dictionary(Dictionary(SAMPLE, seed=1))
     yield
     tools.set_dictionary(None)
+    
+@pytest.fixture(autouse=True)
+def memory_progress():
+    """Ogni test usa un database dei progressi in memoria, mai data/progress.db."""
+    tools_v1.set_progress(ProgressStore(":memory:"))
+    yield
+    tools_v1.set_progress(None)
+
+
+def _char_embed(texts, task):
+    """Embedding finto: conta i caratteri (stessi caratteri = testi simili). Niente rete."""
+    vectors = []
+    for text in texts:
+        v = [0.0] * 128
+        for ch in text:
+            v[ord(ch) % 128] += 1
+        vectors.append(v)
+    return vectors
+
+
+@pytest.fixture
+def fake_embed():
+    return _char_embed

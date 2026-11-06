@@ -17,3 +17,10 @@ def get_api_key() -> str:
     if not key:
         raise RuntimeError("GEMINI_API_KEY mancante: controlla il file .env")
     return key
+
+
+DEFAULT_EMBED_MODEL = "gemini-embedding-001"
+
+def get_embed_model_name() -> str:
+    """Modello di embedding: GEMINI_EMBED_MODEL nel .env, altrimenti il default."""
+    return os.getenv("GEMINI_EMBED_MODEL", DEFAULT_EMBED_MODEL)

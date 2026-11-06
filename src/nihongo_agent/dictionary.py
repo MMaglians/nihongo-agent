@@ -57,12 +57,15 @@ class Dictionary:
         """Cerca per forma scritta (kanji) o per lettura (kana). Lista vuota se assente."""
         return [self._summary(w) for w in self.index.get(text.strip(), [])[:max_entries]]
 
-    def quiz(self, n: int) -> list[dict]:
-        """n domande a scelta multipla: parola giapponese -> significato in inglese."""
+    def quiz(self, n: int, words: list[str] | None = None) -> list[dict]:
+        """n domande a scelta multipla; con words, solo quelle parole (ripasso)."""
         if len({self._first_gloss(w) for w in self._pool}) < 4:
             raise ValueError("dizionario troppo piccolo per un quiz")
+        pool = self._pool
+        if words:  # ripasso: solo le parole indicate (se sono nel dizionario)
+            pool = [self.index[w][0] for w in words if w in self.index] or self._pool
         questions = []
-        for word in self.rng.sample(self._pool, min(n, len(self._pool))):
+        for word in self.rng.sample(pool, min(n, len(pool))):
             correct = self._first_gloss(word)
             wrong: list[str] = []
             while len(wrong) < 3:

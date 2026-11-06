@@ -1,19 +1,20 @@
 [project]
 name = "nihongo-agent"
-version = "0.1.0"
-description = "Add your description here"
+version = "0.2.0"
+description = "Japanese-learning tutor agent: LangGraph router, RAG over handwritten notes, progress memory (Gemini API)"
 readme = "README.md"
 authors = [
-    { name = "Matteo Magliano", email = "perfiu02@gmail.com" }
+    { name = "Matteo Magliano", email = "matteomagliano02@gmail.com" }
 ]
 requires-python = ">=3.12"
 dependencies = [
     "google-genai>=2.33.0",
+    "langgraph>=1.2.19",
+    "numpy>=2.5.4",
+    "pypdf>=6.21.4",
     "python-dotenv>=1.2.4",
 ]
 
-[project.scripts]
-nihongo-agent = "nihongo_agent:main"
 
 [build-system]
 requires = ["uv_build>=0.13.4,<0.14.0"]

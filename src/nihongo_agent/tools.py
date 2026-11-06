@@ -69,9 +69,9 @@ MAKE_QUIZ_DECL = types.FunctionDeclaration(
 ALL_DECLS = [LOOKUP_WORD_DECL, MAKE_QUIZ_DECL]
 TOOL_REGISTRY = {"lookup_word": lookup_word, "make_quiz": make_quiz}
 
-def execute_tool(name: str, args: dict) -> dict:
+def execute_tool(name: str, args: dict, registry: dict | None = None) -> dict:
     """Esegue il tool richiesto dal modello. Gli errori diventano osservazioni."""
-    func = TOOL_REGISTRY.get(name)
+    func = (registry or TOOL_REGISTRY).get(name)
     if func is None:
         return {"error": f"tool sconosciuto: {name}"}
     try:
