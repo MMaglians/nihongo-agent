@@ -50,3 +50,25 @@ Not in v0: grammar answers, Italian-to-Japanese lookup (candidates for v1).
 Planned after the 11-week plan: optional private corpora (e.g. a textbook PDF), local only;
 they are never committed or deployed.
 Grammar teaching as a curriculum, audio, handwriting, spaced-repetition scheduling.
+
+## 8. Scope of v1
+In: LangGraph graph with a router (use tools / retrieve from notes / plain answer), the v0
+tool loop (max 6 steps), RAG over my handwritten notes (transcribed with Gemini and reviewed
+by hand), progress memory in SQLite (deterministic quiz checking, review of wrong words),
+conversation memory per thread (in-memory checkpointer).
+Out: conversation memory across sessions, web UI, deployment, notes not yet reviewed.
+
+## 9. How success is measured (v1)
+28 questions: the 20 of v0 plus 8 about my notes (6 answerable, 2 not in the notes).
+Criteria fixed BEFORE running the evaluation (2026-11-06). v1 passes only if all hold:
+- Correct route: at least 25 of 28.
+- Correct tool choice: at least 25 of 28, and no more than 1 of the 20 v0 questions worse than v0.
+- Correct answer (hand-labelled): at least 24 of 28.
+- Red line: zero invented dictionary entries on the 3 absent words, and zero invented content on the 2 questions whose answer is not in my notes.
+Alert thresholds (reported, investigated if exceeded):
+- Median time per question at most 12 s; mean model calls at most 3.5.
+- Pay-as-you-go equivalent cost at most 0.003 $ per question.
+- No question reaches the step limit; no API errors.
+Labelling rules for notes questions: correct if the answer agrees with my notes and cites
+the right source; for absent topics, correct only if it says the notes do not contain it.
+Comparison with v0: paired sign test on the 20 shared questions (v0 results from 2026-10-30).
