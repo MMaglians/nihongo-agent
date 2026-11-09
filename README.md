@@ -216,36 +216,36 @@ note chunks, which is cached and recomputed only when the notes change.
 
 ## Project structure
 ```text
-   nihongo-agent/
-   ├── chat.py                     # v0 command-line chat
-   ├── chat_v1.py                  # v1 command-line chat (LangGraph)
-   ├── step_once.py                # day-1 script: one manual tool-calling round trip
-   ├── src/nihongo_agent/
-   │   ├── agent.py                # v0 loop: model call, tool execution, step limit
-   │   ├── tools.py                # v0 tools (lookup_word, make_quiz)
-   │   ├── graph.py                # v1 graph: router, tool loop, retrieval, answer
-   │   ├── tools_v1.py             # v1 tools (adds check_answer, show_progress)
-   │   ├── notes.py                # chunking, embeddings and search over my notes
-   │   ├── progress.py             # quiz progress in SQLite
-   │   ├── transcribe.py           # handwritten PDF to Markdown with Gemini
-   │   ├── dictionary.py           # JMdict loader, lookup and quiz generation
-   │   ├── tracing.py              # JSONL execution traces
-   │   ├── retry.py                # backoff on server errors (5xx)
-   │   ├── evaluation.py           # v0 evaluation, metrics, Wilson intervals
-   │   ├── evaluation_v1.py        # v1 evaluation and paired comparison with v0
-   │   ├── config.py               # model names and API key from .env
-   │   └── one_step.py             # single model call used by step_once.py
-   ├── eval/                       # questions, runners, labelling, reports, results (v0 and v1)
-   ├── scripts/
-   │   ├── fetch_jmdict.py         # downloads the dictionary into data/ (not committed)
-   │   └── transcribe_notes.py     # transcribes the notebook into notes_draft/
-   ├── tests/                      # pytest suite (no network)
-   ├── docs/SCOPE.md               # scope and success criteria
-   ├── docs/context_and_memory.md  # consulting memo: what goes in the context vs in memory
-   ├── DECISIONS.md                # architecture decisions
-   ├── .env.example                # environment variables template
-   ├── LICENSE                     # MIT
-   └── pyproject.toml              # dependencies (uv)
+nihongo-agent/
+├── chat.py                     # v0 command-line chat
+├── chat_v1.py                  # v1 command-line chat (LangGraph)
+├── step_once.py                # day-1 script: one manual tool-calling round trip
+├── src/nihongo_agent/
+│   ├── agent.py                # v0 loop: model call, tool execution, step limit
+│   ├── tools.py                # v0 tools (lookup_word, make_quiz)
+│   ├── graph.py                # v1 graph: router, tool loop, retrieval, answer
+│   ├── tools_v1.py             # v1 tools (adds check_answer, show_progress)
+│   ├── notes.py                # chunking, embeddings and search over my notes
+│   ├── progress.py             # quiz progress in SQLite
+│   ├── transcribe.py           # handwritten PDF to Markdown with Gemini
+│   ├── dictionary.py           # JMdict loader, lookup and quiz generation
+│   ├── tracing.py              # JSONL execution traces
+│   ├── retry.py                # backoff on server errors (5xx)
+│   ├── evaluation.py           # v0 evaluation, metrics, Wilson intervals
+│   ├── evaluation_v1.py        # v1 evaluation and paired comparison with v0
+│   ├── config.py               # model names and API key from .env
+│   └── one_step.py             # single model call used by step_once.py
+├── eval/                       # questions, runners, labelling, reports, results (v0 and v1)
+├── scripts/
+│   ├── fetch_jmdict.py         # downloads the dictionary into data/ (not committed)
+│   └── transcribe_notes.py     # transcribes the notebook into notes_draft/
+├── tests/                      # pytest suite (no network)
+├── docs/SCOPE.md               # scope and success criteria
+├── docs/context_and_memory.md  # consulting memo: what goes in the context vs in memory
+├── DECISIONS.md                # architecture decisions
+├── .env.example                # environment variables template
+├── LICENSE                     # MIT
+└── pyproject.toml              # dependencies (uv)
 ```
 
 ## Data and acknowledgements
