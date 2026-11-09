@@ -1,7 +1,8 @@
 # nihongo-agent
 
-A Japanese-learning tutor agent built from scratch: a hand-written tool-calling loop
-(no agent framework) on the Gemini API, with a JMdict dictionary tool and a vocabulary quiz tool.
+A Japanese-learning tutor agent on the Gemini API, built in two versions: v0 is a hand-written
+tool-calling loop (no agent framework) with a JMdict dictionary tool and a vocabulary quiz tool;
+v1 puts that loop inside a LangGraph graph with a router, RAG over my handwritten notes and persistent quiz progress.
 
 **Status:** v0.2.0. v1 adds a LangGraph router, RAG over my handwritten notes and progress
 memory. The v0 tool loop is kept as a baseline (see [DECISIONS.md](DECISIONS.md)).
@@ -114,7 +115,7 @@ Per category:
 (1 better, 0 worse, p = 1.0); answer 20/20 vs 20/20 (no discordant pairs). v1 adds routing and
 notes without any regression, but the difference is not statistically significant: 20 questions
 cannot show it. The cost of the router: 2.61 model calls per question instead of 1.80, and
-0.00061 $ instead of 0.00040 $ (about +50%).Mean time per question was 2.8 s vs 4.6 s for v0,
+0.00061 $ instead of 0.00040 $ (about +50%). Mean time per question was 2.8 s vs 4.6 s for v0,
 despite the extra call; the runs were on different days, so this difference more likely reflects
 API latency on the day than the design, and model drift between runs is also possible.
 
@@ -142,20 +143,22 @@ Model: gemini-3.5-flash-lite, 2026-10-30. Confidence intervals: Wilson 95%.
 
 | Metric | Result |
 |---|---|
-| Correct tool choice | 19/20 (95% CI 0,76-0,99) |
-| Correct answer | 20/20 (95% CI 0,84-1,00) |
-| Mean steps / mean seconds per question | 1,80 / 4,6 s|
+| Correct tool choice | 19/20 (95% CI 0.76-0.99) |
+| Correct answer | 20/20 (95% CI 0.84-1.00) |
+| Mean steps / mean seconds per question | 1.80 / 4.6 s|
 | Mean tokens per question (in / out) | 698 / 74 |
 
-Per category: | Categoria | Domande | Tool corretto | Risposta corretta |
+Per category:
+
+| Category | Questions | Correct tool | Correct answer |
 |---|---|---|---|
-| parola | 6 | 6/6 | 6/6 |
-| lettura | 3 | 3/3 | 3/3 |
-| assente | 3 | 3/3 | 3/3 |
+| word | 6 | 6/6 | 6/6 |
+| reading | 3 | 3/3 | 3/3 |
+| absent word | 3 | 3/3 | 3/3 |
 | quiz | 3 | 3/3 | 3/3 |
-| senza_tool | 5 | 4/5 | 5/5 |
+| no tool | 5 | 4/5 | 5/5 |
+
 Reproduce: `uv run python eval/run_eval.py`, then `eval/label.py` and `eval/report.py`.
-With only 20 questions the intervals are wide: read these numbers as a baseline.
 
 ## Limitations
 **Dictionary and tools**
@@ -213,27 +216,36 @@ note chunks, which is cached and recomputed only when the notes change.
 
 ## Project structure
 ```text
-nihongo-agent/
-├── chat.py                     # command-line chat
-├── step_once.py                # day-1 script: one manual tool-calling round trip
-├── src/nihongo_agent/
-│   ├── agent.py                # the loop: model call, tool execution, step limit
-│   ├── tools.py                # tool declarations and registry (lookup_word, make_quiz)
-│   ├── dictionary.py           # JMdict loader, lookup and quiz generation
-│   ├── tracing.py              # JSONL execution traces
-│   ├── retry.py                # backoff on server errors (5xx)
-│   ├── evaluation.py           # evaluation loop, metrics, Wilson intervals
-│   ├── config.py               # model name and API key from .env
-│   └── one_step.py             # single model call used by step_once.py
-├── eval/                       # questions, runner, labelling, report, results
-├── scripts/fetch_jmdict.py     # downloads the dictionary into data/ (not committed)
-├── tests/                      # pytest suite (no network)
-├── docs/SCOPE.md               # scope and success criteria
-├── docs/context_and_memory.md  # consulting memo: what goes in the context vs in memory
-├── DECISIONS.md                # architecture decisions
-├── .env.example                # environment variables template
-├── LICENSE                     # MIT
-└── pyproject.toml              # dependencies (uv)
+   nihongo-agent/
+   ├── chat.py                     # v0 command-line chat
+   ├── chat_v1.py                  # v1 command-line chat (LangGraph)
+   ├── step_once.py                # day-1 script: one manual tool-calling round trip
+   ├── src/nihongo_agent/
+   │   ├── agent.py                # v0 loop: model call, tool execution, step limit
+   │   ├── tools.py                # v0 tools (lookup_word, make_quiz)
+   │   ├── graph.py                # v1 graph: router, tool loop, retrieval, answer
+   │   ├── tools_v1.py             # v1 tools (adds check_answer, show_progress)
+   │   ├── notes.py                # chunking, embeddings and search over my notes
+   │   ├── progress.py             # quiz progress in SQLite
+   │   ├── transcribe.py           # handwritten PDF to Markdown with Gemini
+   │   ├── dictionary.py           # JMdict loader, lookup and quiz generation
+   │   ├── tracing.py              # JSONL execution traces
+   │   ├── retry.py                # backoff on server errors (5xx)
+   │   ├── evaluation.py           # v0 evaluation, metrics, Wilson intervals
+   │   ├── evaluation_v1.py        # v1 evaluation and paired comparison with v0
+   │   ├── config.py               # model names and API key from .env
+   │   └── one_step.py             # single model call used by step_once.py
+   ├── eval/                       # questions, runners, labelling, reports, results (v0 and v1)
+   ├── scripts/
+   │   ├── fetch_jmdict.py         # downloads the dictionary into data/ (not committed)
+   │   └── transcribe_notes.py     # transcribes the notebook into notes_draft/
+   ├── tests/                      # pytest suite (no network)
+   ├── docs/SCOPE.md               # scope and success criteria
+   ├── docs/context_and_memory.md  # consulting memo: what goes in the context vs in memory
+   ├── DECISIONS.md                # architecture decisions
+   ├── .env.example                # environment variables template
+   ├── LICENSE                     # MIT
+   └── pyproject.toml              # dependencies (uv)
 ```
 
 ## Data and acknowledgements
