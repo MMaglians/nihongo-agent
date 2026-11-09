@@ -34,13 +34,19 @@ Alert thresholds (reported, investigated if exceeded, not pass/fail):
 - Median time per question at most 10 s; mean steps at most 2.5.
 - Pay-as-you-go equivalent cost at most 0.002 $ per question.
 - No question reaches the 6-step limit; no API errors.
-Labelling rules: [keep the four rules already written]
+
+Labelling rules:
+- word / reading: the meaning and reading agree with the dictionary result shown.
+- absent word: the agent says the word is not in the dictionary; any extra knowledge is explicitly marked as not coming from the dictionary.
+- quiz: one question with options A-D, and the answer is not revealed.
+- no tool: a short, sensible answer in Italian that does not invent dictionary data.
+
 Confidence intervals: Wilson 95%. With n = 20 they are wide: the thresholds are go/no-go
 decisions for v1, not statistical claims.
 
 ## 6. Risks and constraints
 - Free-tier quotas and model names change; the model is set in `.env`.
-- - Data use of prompts: under the official Gemini API Additional Terms (page last updated
+- Data use of prompts: under the official Gemini API Additional Terms (page last updated
 2026-04-28, read on 2026-10-30), users in the EEA, Switzerland or the UK get the "Paid Services" data terms on all services, including unpaid quota: prompts and responses are not used to improve Google's products. Elsewhere the free tier may use submitted content to improve products, with human review. I am in Italy, so the first case applies; I still avoid sending sensitive or personal data. The same terms say that API clients made available to users in the EEA, Switzerland or the UK must use Paid Services, so a public demo for other people may need billing enabled; to be re-checked before the deployment (week 8).
 - The dictionary is JMdict, common words only; licence CC BY-SA 4.0, attribution required, the file is not redistributed in this repository.
 - One labeller who also wrote the questions; single run per question.
