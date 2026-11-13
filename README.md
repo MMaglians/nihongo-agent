@@ -1,4 +1,5 @@
 # nihongo-agent
+![tests](https://github.com/MMaglians/nihongo-agent/actions/workflows/tests.yml/badge.svg)
 
 A Japanese-learning tutor agent on the Gemini API, built in two versions: v0 is a hand-written
 tool-calling loop (no agent framework) with a JMdict dictionary tool and a vocabulary quiz tool;
