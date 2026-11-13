@@ -216,7 +216,7 @@ note chunks, which is cached and recomputed only when the notes change.
 
 ## Project structure
 ```text
-   nihongo-agent/
+  nihongo-agent/
    ├── chat.py                     # v0 command-line chat
    ├── chat_v1.py                  # v1 command-line chat (LangGraph)
    ├── step_once.py                # day-1 script: one manual tool-calling round trip
