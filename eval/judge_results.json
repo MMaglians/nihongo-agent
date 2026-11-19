@@ -1,0 +1,389 @@
+{
+  "model": "gemma-4-31b-it",
+  "rows": [
+    {
+      "set": "v0",
+      "category": "parola",
+      "question": "Che cosa significa 買い物?",
+      "human": true,
+      "judge": true,
+      "motivazione": "La lettura (kaimono) e i significati (shopping, fare spese, merce acquistata) concordano con i risultati del dizionario."
+    },
+    {
+      "set": "v0",
+      "category": "parola",
+      "question": "Mi spieghi la parola 船?",
+      "human": true,
+      "judge": true,
+      "motivazione": "La lettura (fune) e i significati (nave, barca, imbarcazione) concordano con i dati del dizionario."
+    },
+    {
+      "set": "v0",
+      "category": "parola",
+      "question": "しんぶん, che vuol dire?",
+      "human": true,
+      "judge": true,
+      "motivazione": "Il significato (giornale/newspaper) e la lettura (しんぶん) concordano con i risultati del dizionario."
+    },
+    {
+      "set": "v0",
+      "category": "parola",
+      "question": "Cosa vuol dire パソコン?",
+      "human": true,
+      "judge": true,
+      "motivazione": "La lettura e il significato forniti concordano con i risultati del dizionario."
+    },
+    {
+      "set": "v0",
+      "category": "parola",
+      "question": "Mi spieghi la parola ねんがじょう?",
+      "human": true,
+      "judge": true,
+      "motivazione": "La lettura (ねんがじょう) e il significato (New Year's card) concordano con i risultati del dizionario forniti."
+    },
+    {
+      "set": "v0",
+      "category": "parola",
+      "question": "Cosa significa la parola 如何?",
+      "human": true,
+      "judge": true,
+      "motivazione": "La risposta riporta correttamente sia le letture (どう, いかが) che i significati (come, che ne dici di) presenti nei risultati del dizionario."
+    },
+    {
+      "set": "v0",
+      "category": "lettura",
+      "question": "Come si legge 図書館?",
+      "human": true,
+      "judge": true,
+      "motivazione": "La lettura e il significato forniti dal tutor concordano esattamente con i risultati del dizionario."
+    },
+    {
+      "set": "v0",
+      "category": "lettura",
+      "question": "Qual è la lettura di 昨日?",
+      "human": true,
+      "judge": true,
+      "motivazione": "Le letture fornite (きのう, さくじつ) concordano esattamente con i risultati del dizionario."
+    },
+    {
+      "set": "v0",
+      "category": "lettura",
+      "question": "Mi dici come si pronuncia 友達?",
+      "human": true,
+      "judge": true,
+      "motivazione": "La lettura 'ともだち' e il significato 'amico' concordano con i risultati del dizionario fornito."
+    },
+    {
+      "set": "v0",
+      "category": "assente",
+      "question": "Che cosa significa 山田太郎?",
+      "human": true,
+      "judge": true,
+      "motivazione": "Il tutor ha correttamente dichiarato che la parola non è nel dizionario e ha esplicitamente attribuito le informazioni aggiuntive alla propria conoscenza generale."
+    },
+    {
+      "set": "v0",
+      "category": "assente",
+      "question": "Mi spieghi la parola ほげふが?",
+      "human": true,
+      "judge": true,
+      "motivazione": "Il tutor ha correttamente indicato che la parola non è nel dizionario e ha esplicitamente attribuito le informazioni aggiuntive alla propria conoscenza generale."
+    },
+    {
+      "set": "v0",
+      "category": "assente",
+      "question": "Come si legge 蟷螂?",
+      "human": true,
+      "judge": true,
+      "motivazione": "Il tutor afferma correttamente che la parola non è nel dizionario e dichiara esplicitamente che le informazioni aggiuntive provengono dalla propria conoscenza generale e non dal dizionario."
+    },
+    {
+      "set": "v0",
+      "category": "quiz",
+      "question": "Fammi un quiz di 2 domande.",
+      "human": true,
+      "judge": true,
+      "motivazione": "Il tutor ha proposto una sola domanda con opzioni A-D e non ha rivelato la risposta."
+    },
+    {
+      "set": "v0",
+      "category": "quiz",
+      "question": "Vorrei ripassare: mettimi alla prova con 3 domande a scelta multipla.",
+      "human": true,
+      "judge": true,
+      "motivazione": "Il tutor ha proposto una sola domanda con opzioni A-D e non ha rivelato la risposta."
+    },
+    {
+      "set": "v0",
+      "category": "quiz",
+      "question": "Interrogami sul vocabolario, ma solo 4 parole.",
+      "human": true,
+      "judge": true,
+      "motivazione": "Il tutor ha proposto una sola domanda con opzioni A-D e non ha rivelato la risposta."
+    },
+    {
+      "set": "v0",
+      "category": "senza_tool",
+      "question": "Ciao, come stai?",
+      "human": true,
+      "judge": true,
+      "motivazione": "La risposta è breve, sensata in italiano e non inventa dati del dizionario."
+    },
+    {
+      "set": "v0",
+      "category": "senza_tool",
+      "question": "Che tempo fa oggi a Tokyo?",
+      "human": true,
+      "judge": true,
+      "motivazione": "La risposta è sensata, breve e non inventa dati, dichiarando correttamente di non avere accesso alle informazioni in tempo reale."
+    },
+    {
+      "set": "v0",
+      "category": "senza_tool",
+      "question": "Cosa sai fare?",
+      "human": true,
+      "judge": false,
+      "motivazione": "Il tutor afferma di poter cercare parole in un dizionario ufficiale, ma non sono state fornite prove o dati di dizionario a disposizione."
+    },
+    {
+      "set": "v0",
+      "category": "senza_tool",
+      "question": "Cosa è un buco nero?",
+      "human": true,
+      "judge": true,
+      "motivazione": "La risposta è sensata, breve e riporta correttamente l'assenza del termine nel dizionario senza inventare dati provenienti dallo stesso."
+    },
+    {
+      "set": "v0",
+      "category": "senza_tool",
+      "question": "Quanto fa 2 + 2?",
+      "human": true,
+      "judge": true,
+      "motivazione": "La risposta è breve, sensata in italiano e non inventa dati del dizionario."
+    },
+    {
+      "set": "v1",
+      "category": "parola",
+      "question": "Che cosa significa 買い物?",
+      "human": true,
+      "judge": true,
+      "motivazione": "La lettura (かいもの) e il significato (shopping/acquisti) concordano con i risultati del dizionario forniti."
+    },
+    {
+      "set": "v1",
+      "category": "parola",
+      "question": "Mi spieghi la parola 船?",
+      "human": true,
+      "judge": true,
+      "motivazione": "La lettura (ふね) e i significati (nave, barca, imbarcazione) concordano con i dati del dizionario."
+    },
+    {
+      "set": "v1",
+      "category": "parola",
+      "question": "しんぶん, che vuol dire?",
+      "human": true,
+      "judge": true,
+      "motivazione": "Il significato (giornale) e la lettura concordano con i risultati del dizionario."
+    },
+    {
+      "set": "v1",
+      "category": "parola",
+      "question": "Cosa vuol dire パソコン?",
+      "human": true,
+      "judge": true,
+      "motivazione": "La lettura e il significato forniti concordano con i risultati del dizionario."
+    },
+    {
+      "set": "v1",
+      "category": "parola",
+      "question": "Mi spieghi la parola ねんがじょう?",
+      "human": true,
+      "judge": true,
+      "motivazione": "Il significato e la lettura forniti concordano con i risultati del dizionario."
+    },
+    {
+      "set": "v1",
+      "category": "parola",
+      "question": "Cosa significa la parola 如何?",
+      "human": true,
+      "judge": true,
+      "motivazione": "La risposta riporta correttamente sia le letture (どう, いかが) che i significati (come, in che modo, che ne dici di) presenti nei risultati del dizionario."
+    },
+    {
+      "set": "v1",
+      "category": "lettura",
+      "question": "Come si legge 図書館?",
+      "human": true,
+      "judge": true,
+      "motivazione": "La lettura e il significato forniti dal tutor concordano esattamente con i risultati del dizionario."
+    },
+    {
+      "set": "v1",
+      "category": "lettura",
+      "question": "Qual è la lettura di 昨日?",
+      "human": true,
+      "judge": true,
+      "motivazione": "Le letture fornite (きのう, さくじつ) concordano esattamente con i risultati del dizionario."
+    },
+    {
+      "set": "v1",
+      "category": "lettura",
+      "question": "Mi dici come si pronuncia 友達?",
+      "human": true,
+      "judge": true,
+      "motivazione": "La lettura 'ともだち' e il significato 'amico' concordano con i risultati del dizionario fornito."
+    },
+    {
+      "set": "v1",
+      "category": "assente",
+      "question": "Che cosa significa 山田太郎?",
+      "human": true,
+      "judge": true,
+      "motivazione": "Il tutor ha correttamente dichiarato che le parole non sono nel dizionario e ha esplicitamente attribuito le informazioni aggiuntive alla propria conoscenza generale."
+    },
+    {
+      "set": "v1",
+      "category": "assente",
+      "question": "Mi spieghi la parola ほげふが?",
+      "human": true,
+      "judge": true,
+      "motivazione": "Il tutor ha correttamente indicato che la parola non è nel dizionario e ha esplicitamente dichiarato che le informazioni aggiuntive provengono dalla propria conoscenza generale."
+    },
+    {
+      "set": "v1",
+      "category": "assente",
+      "question": "Come si legge 蟷螂?",
+      "human": true,
+      "judge": true,
+      "motivazione": "Il tutor ha correttamente indicato che la parola non è nel dizionario e ha esplicitamente dichiarato che le informazioni aggiuntive provengono dalla propria conoscenza generale e non dal dizionario."
+    },
+    {
+      "set": "v1",
+      "category": "quiz",
+      "question": "Fammi un quiz di 2 domande.",
+      "human": true,
+      "judge": true,
+      "motivazione": "Il tutor ha proposto una sola domanda con opzioni A-D e non ha rivelato la risposta."
+    },
+    {
+      "set": "v1",
+      "category": "quiz",
+      "question": "Vorrei ripassare: mettimi alla prova con 3 domande a scelta multipla.",
+      "human": true,
+      "judge": true,
+      "motivazione": "Il tutor ha proposto una sola domanda con opzioni A-D e non ha rivelato la risposta."
+    },
+    {
+      "set": "v1",
+      "category": "quiz",
+      "question": "Interrogami sul vocabolario, ma solo 4 parole.",
+      "human": true,
+      "judge": true,
+      "motivazione": "Il tutor ha proposto una sola domanda con opzioni A-D e non ha rivelato la risposta."
+    },
+    {
+      "set": "v1",
+      "category": "senza_tool",
+      "question": "Ciao, come stai?",
+      "human": true,
+      "judge": true,
+      "motivazione": "La risposta è breve, sensata e non inventa dati del dizionario."
+    },
+    {
+      "set": "v1",
+      "category": "senza_tool",
+      "question": "Che tempo fa oggi a Tokyo?",
+      "human": true,
+      "judge": true,
+      "motivazione": "La risposta è breve, sensata e non inventa dati del dizionario, ammettendo correttamente di non poter controllare il meteo in tempo reale."
+    },
+    {
+      "set": "v1",
+      "category": "senza_tool",
+      "question": "Cosa sai fare?",
+      "human": true,
+      "judge": true,
+      "motivazione": "La risposta è breve, sensata e non inventa dati del dizionario, dichiarando esplicitamente di non avervi accesso."
+    },
+    {
+      "set": "v1",
+      "category": "senza_tool",
+      "question": "Cosa è un buco nero?",
+      "human": true,
+      "judge": true,
+      "motivazione": "La risposta è breve, sensata e non inventa dati del dizionario."
+    },
+    {
+      "set": "v1",
+      "category": "senza_tool",
+      "question": "Quanto fa 2 + 2?",
+      "human": true,
+      "judge": true,
+      "motivazione": "La risposta è breve, sensata in italiano e non inventa dati del dizionario."
+    },
+    {
+      "set": "v1",
+      "category": "appunti",
+      "question": "Come si dicono i giorni della settimana in giapponese?",
+      "human": false,
+      "judge": false,
+      "motivazione": "[omessa: appunti privati]"
+    },
+    {
+      "set": "v1",
+      "category": "appunti",
+      "question": "Quale è la struttura grammaticale per chiedere un permesso?",
+      "human": true,
+      "judge": true,
+      "motivazione": "[omessa: appunti privati]"
+    },
+    {
+      "set": "v1",
+      "category": "appunti",
+      "question": "Cosa ho scritto su Imasu e Arimasu?",
+      "human": true,
+      "judge": true,
+      "motivazione": "[omessa: appunti privati]"
+    },
+    {
+      "set": "v1",
+      "category": "appunti",
+      "question": "Cosa ho scritto su yomimasu?",
+      "human": true,
+      "judge": true,
+      "motivazione": "[omessa: appunti privati]"
+    },
+    {
+      "set": "v1",
+      "category": "appunti",
+      "question": "Cpsa vuol dire 読みます?",
+      "human": false,
+      "judge": false,
+      "motivazione": "[omessa: appunti privati]"
+    },
+    {
+      "set": "v1",
+      "category": "appunti",
+      "question": "Quale è la traduzione di 覚えます?",
+      "human": false,
+      "judge": false,
+      "motivazione": "[omessa: appunti privati]"
+    },
+    {
+      "set": "v1",
+      "category": "appunti_assente",
+      "question": "Cosa ho scritto su tokoro?",
+      "human": true,
+      "judge": true,
+      "motivazione": "[omessa: appunti privati]"
+    },
+    {
+      "set": "v1",
+      "category": "appunti_assente",
+      "question": "Cosa ho scritto su agemasu e moraimasu?",
+      "human": true,
+      "judge": true,
+      "motivazione": "[omessa: appunti privati]"
+    }
+  ]
+}
