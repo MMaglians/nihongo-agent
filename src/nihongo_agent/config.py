@@ -24,3 +24,11 @@ DEFAULT_EMBED_MODEL = "gemini-embedding-001"
 def get_embed_model_name() -> str:
     """Modello di embedding: GEMINI_EMBED_MODEL nel .env, altrimenti il default."""
     return os.getenv("GEMINI_EMBED_MODEL", DEFAULT_EMBED_MODEL)
+
+
+
+DEFAULT_JUDGE_MODEL = "gemma-4-31b-it"
+
+def get_judge_model_name() -> str:
+    """Modello del giudice: JUDGE_MODEL nel .env, altrimenti il default."""
+    return os.getenv("JUDGE_MODEL", DEFAULT_JUDGE_MODEL)

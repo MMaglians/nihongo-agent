@@ -70,3 +70,8 @@ LangGraph's in-memory store would be lost on exit.
 
 ## 15. Private evaluation results, public redacted copy
 Decision: full v1 results stay in `data/` (ignored); `eval/results_v1.json` replaces answers to notes questions with a placeholder.
+
+
+## 16. An LLM judge validated against my labels before any use
+Decision: the judge applies the same rules I used for hand labelling, gives a binary verdict with the reasoning first, sees only the evidence the agent had, and the answer under review is fenced and marked as text to evaluate, not instructions. It runs on a different model from the generator. Unreadable verdicts are kept as missing, not counted as wrong.
+Why: a judge is a measuring instrument with known biases (position, length, self-preference) and must be calibrated on labels it has not seen. Agreement is reported with Cohen's kappa and its interval, and with the direction of the disagreements, because a judge that is more lenient than the human is the dangerous case.
