@@ -137,6 +137,20 @@ all of them flagged by the model among its 20 doubts (2 false alarms). In my own
 Reproduce: `uv run python eval/run_eval_v1.py`, then `eval/label_v1.py` and `eval/report_v1.py`.
 `eval/results_v1.json` omits the answers that quote my notes.
 
+### LLM judge validation (v0.2.1)
+Can an LLM judge replace my hand labels in future evaluations? I ran a judge (`gemma-4-31b-it`, a different model from the one that wrote the answers) on the 48 answers I had already labelled (20 from v0, 28 from v1), with the same labelling rules (docs/SCOPE.md), a binary verdict, the reasoning before the verdict and temperature 0. My labels were written before the judge existed.
+
+| Measure | Result |
+|---|---|
+| Readable verdicts | 48/48 |
+| Agreement with my labels | 47/48 |
+| Answers I labelled wrong, also judged wrong | 3/3 (95% Wilson CI 0.44-1.00) |
+| Judge more indulgent than me / stricter than me | 0 / 1 |
+| Cohen's kappa | 0.85 (bootstrap 95% CI 0.00-1.00) |
+
+With only 3 wrong answers in the sample the kappa interval spans everything: the judge is promising, not validated. The one disagreement ("Cosa sai fare?", no-tool category) is a judge error caused by the judge prompt: a general "use only the evidence" instruction overrode the category rule, which needs no evidence. I did not fix the prompt and re-judge the same 48 answers, because that would tune the judge on its own validation data; a fixed judge needs new labelled answers. The 48 answers are not 48 independent questions: 20 questions appear in both v0 and v1. For the 8 notes questions the notes context was rebuilt with the current index, which may differ slightly from what the agent saw.
+
+Results: `eval/judge_results.json` (reasons on notes questions omitted). Reproduce: `uv run python eval/run_judge.py` (free tier). Statistics: `eval_report.ipynb` in [ai-lab](https://github.com/MMaglians/ai-lab).
 
 ## Evaluation (v0)
 20 hand-written questions in 5 categories, one run each, labelled by hand.
@@ -172,6 +186,7 @@ question, and in one v1 evaluation answer it replied from its own knowledge with
 - Step limit: at most 6 model calls per tool loop. If the limit is reached the agent stops with a
 message and may leave the question unanswered (reached 0 times in both evaluations).
 
+
 **Router and memory (v1)**
 - The router adds one model call per turn and sees only the last tutor message, not the full history.
 - Conversation history is kept per thread and in memory only; across sessions only quiz progress
@@ -196,6 +211,7 @@ The free tier returned repeated 503 errors during the transcription; the script 
 person who also wrote the questions. Intervals are wide: read the numbers as baselines.
 - 3 of the 6 notes questions did not mention the notes, so the router could not know the answer was expected from them; they must be rewritten for the next evaluation.
 - v0 and v1 were run on different days (2026-10-30 and 2026-11-06): latency differences and model drift between runs are possible.
+- The LLM judge agrees with my labels on 47/48 answers but was checked on only 3 wrong answers: it does not replace hand labelling yet.
 
 
 ## Cost
@@ -233,10 +249,11 @@ nihongo-agent/
 │   ├── tracing.py              # JSONL execution traces
 │   ├── retry.py                # backoff on server errors (5xx)
 │   ├── evaluation.py           # v0 evaluation, metrics, Wilson intervals
-│   ├── evaluation_v1.py        # v1 evaluation and paired comparison with v0
+│   ├── evaluation_v1.py       # v1 evaluation and paired comparison with v0
+│   ├── judge.py                # LLM judge with the hand-labelling rules
 │   ├── config.py               # model names and API key from .env
 │   └── one_step.py             # single model call used by step_once.py
-├── eval/                       # questions, runners, labelling, reports, results (v0 and v1)
+├── eval/                       # questions, runners, labelling, judge,  reports, results (v0 and v1)
 ├── scripts/
 │   ├── fetch_jmdict.py         # downloads the dictionary into data/ (not committed)
 │   └── transcribe_notes.py     # transcribes the notebook into notes_draft/

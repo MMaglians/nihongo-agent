@@ -1,6 +1,6 @@
 [project]
 name = "nihongo-agent"
-version = "0.2.0"
+version = "0.2.1"
 description = "Japanese-learning tutor agent: LangGraph router, RAG over handwritten notes, progress memory (Gemini API)"
 readme = "README.md"
 authors = [
