@@ -8,6 +8,8 @@ authors = [
 ]
 requires-python = ">=3.12"
 dependencies = [
+    "azure-cosmos>=4.17.1",
+    "azure-storage-blob>=12.31.1",
     "google-genai>=2.33.0",
     "langgraph>=1.2.19",
     "numpy>=2.5.4",
