@@ -3,11 +3,11 @@ import tempfile
 import time
 from pathlib import Path
 
-from azure.cosmos import CosmosClient
+
 from azure.storage.blob import BlobServiceClient
 from google import genai
 
-from nihongo_agent.azure_config import setting
+from nihongo_agent.azure_config import cosmos_client, setting
 from nihongo_agent.azure_notes import create_notes_container, download_notes, to_items
 from nihongo_agent.config import get_api_key, get_embed_model_name
 from nihongo_agent.notes import NotesIndex, gemini_embedder, load_chunks
@@ -30,7 +30,7 @@ def main() -> None:
     vectors = NotesIndex.build(chunks, gemini_embedder(client, embed_model)).vectors
 
     # 3. Cosmos DB: database e container ricreati da zero, poi un item per pezzo
-    cosmos = CosmosClient(setting("COSMOS_ENDPOINT"), credential=setting("COSMOS_KEY"))
+    cosmos = cosmos = cosmos_client()
     database = cosmos.create_database_if_not_exists(setting("COSMOS_DATABASE"))
     notes = create_notes_container(database, setting("COSMOS_CONTAINER"), reset=True)
     started = time.perf_counter()

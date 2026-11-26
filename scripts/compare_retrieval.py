@@ -1,10 +1,9 @@
 """Confronta il retrieval locale (numpy) con Cosmos DB sulle 8 domande 'appunti' dell'eval v1."""
 from pathlib import Path
 
-from azure.cosmos import CosmosClient
 from google import genai
 
-from nihongo_agent.azure_config import setting
+from nihongo_agent.azure_config import cosmos_client, setting
 from nihongo_agent.azure_notes import CosmosNotesIndex, compare_hits
 from nihongo_agent.config import get_api_key, get_embed_model_name
 from nihongo_agent.evaluation import read_questions
@@ -32,7 +31,7 @@ def main() -> None:
 
     local, rebuilt = NotesIndex.load_or_build(embed, embed_model)
     print(f"Locale: {len(local.chunks)} pezzi ({'ricostruito' if rebuilt else 'dalla cache'}).")
-    cosmos = CosmosClient(setting("COSMOS_ENDPOINT"), credential=setting("COSMOS_KEY"))
+    cosmos = cosmos_client()
     container = cosmos.get_database_client(setting("COSMOS_DATABASE")).get_container_client(
         setting("COSMOS_CONTAINER"))
     remote = CosmosNotesIndex(container, embed)

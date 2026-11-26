@@ -1,0 +1,17 @@
+# Cosa NON entra nell'immagine. Regola: nessun segreto e nessun dato privato.
+# Segreti (arrivano a runtime come variabili d'ambiente)
+.env
+.env.*
+!.env.example
+# Dati privati e locali (in Docker arrivano con i volumi del compose)
+notes/
+notes_draft/
+raw_notes/
+data/
+logs/
+# Ambiente e cache del PC: l'immagine si costruisce il suo ambiente da uv.lock
+.venv/
+.git/
+.github/
+**/__pycache__/
+.pytest_cache/

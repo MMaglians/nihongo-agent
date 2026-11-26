@@ -8,7 +8,8 @@ from langgraph.checkpoint.memory import InMemorySaver
 
 from nihongo_agent.config import get_api_key, get_embed_model_name, get_model_name
 from nihongo_agent.graph import build_graph, run_turn_v1
-from nihongo_agent.notes import NotesIndex, gemini_embedder
+from nihongo_agent.notes import gemini_embedder
+from nihongo_agent.notes_backend import make_notes_index
 from nihongo_agent.tools import get_dictionary
 from nihongo_agent.tracing import TraceLog
 
@@ -21,8 +22,8 @@ def main() -> None:
     model = get_model_name()
     trace = TraceLog(LOG_PATH, echo=True)
     embed_model = get_embed_model_name()
-    notes, rebuilt = NotesIndex.load_or_build(gemini_embedder(client, embed_model), embed_model)
-    print(f"Appunti: {len(notes.chunks)} pezzi ({'indice ricostruito' if rebuilt else 'indice dalla cache'}).")
+    notes, description = make_notes_index(gemini_embedder(client, embed_model), embed_model)
+    print(f"Appunti: {description}.")
     graph = build_graph(client, model, trace=trace, checkpointer=InMemorySaver(), notes=notes)
     thread_id = str(uuid.uuid4())  # una conversazione = un thread
     config = {"configurable": {"thread_id": thread_id}}
