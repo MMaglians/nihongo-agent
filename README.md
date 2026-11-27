@@ -236,7 +236,7 @@ them, route and answer are 25/25 (95% CI 0.87-1.00); both numbers are reported, 
 not changed after the run. In one of the three the model also answered from its own knowledge
 without saying so, against its instructions. On the notes questions that do mention the notes, 3/3
 were answered from the notes and 2/2 absent topics were refused. A chunking bug was also found during error analysis: headings placed right after the page markers were not detected, so citations show the file name instead of the section. Fixed in
-this release (`load_chunks`); the notes questions were not re-evaluated after the fix.
+this release (`load_chunks`); the notes questions were re-run after the fix in v0.3.0 (backend comparison): 5/8, as before..
 
 **Transcription quality** on 20 reviewed pages (of 147): 15 misreadings corrected (0.75 per page),
 all of them flagged by the model among its 20 doubts (2 false alarms). In my own notes I corrected
@@ -307,7 +307,7 @@ persists (SQLite). Progress is recorded only when the model calls `check_answer`
 corrected, but answers from notes can still repeat errors that neither the model nor I noticed.  Questions written in kana may retrieve romaji notes less well.
 - Handwriting transcription can misread words (15 misreadings in 20 reviewed pages, all corrected).
 - The model numbered pages within each 5-page block from 1; fixed in code after the review, so page markers in the reviewed files may be shifted.
-- The notes questions were evaluated before a chunking fix (see Evaluation v1) and not re-run.
+- The notes questions were re-run after the v0.2.0 chunking fix only in the v0.3.0 backend comparison (5/8, as before); the full v1 evaluation was not repeated.
 
 **API**
 - Server errors (5xx) are retried up to 4 times with backoff; quota errors (429) are not retried in

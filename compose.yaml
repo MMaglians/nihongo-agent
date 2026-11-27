@@ -5,7 +5,7 @@ name: nihongo
 
 services:
   azurite:
-    image: mcr.microsoft.com/azure-storage/azurite
+    image: mcr.microsoft.com/azure-storage/azurite@sha256:c26024d62bf4a5b88a40968afd217234c00e1fc9a4790dc6105d1ca7979f6eec
     command: azurite-blob --blobHost 0.0.0.0 --location /data
     ports:
       - "10000:10000"
@@ -13,7 +13,7 @@ services:
       - azurite-data:/data
 
   cosmos:
-    image: mcr.microsoft.com/cosmosdb/linux/azure-cosmos-emulator:vnext-latest
+    image: mcr.microsoft.com/cosmosdb/linux/azure-cosmos-emulator@sha256:09dcd04e7149975f0427e6cb09781681f407fc74d01e54fc9d6410c36795cda3
     ports:
       - "8081:8081"   # API
       - "8080:8080"   # salute: /ready
@@ -29,6 +29,7 @@ services:
       NOTES_BACKEND: cosmos
       COSMOS_ENDPOINT: http://cosmos:8081
       COSMOS_READY_URL: http://cosmos:8080/ready
+      # Chiave pubblica di sviluppo di Azurite, uguale per tutti e documentata da Microsoft: non è un segreto e funziona solo con l'emulatore.
       AZURE_STORAGE_CONNECTION_STRING: "DefaultEndpointsProtocol=http;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;BlobEndpoint=http://azurite:10000/devstoreaccount1;"
     volumes:
       - ./data:/app/data    # dizionario JMdict e progress.db: restano sul tuo PC
