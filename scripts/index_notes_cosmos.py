@@ -30,7 +30,7 @@ def main() -> None:
     vectors = NotesIndex.build(chunks, gemini_embedder(client, embed_model)).vectors
 
     # 3. Cosmos DB: database e container ricreati da zero, poi un item per pezzo
-    cosmos = cosmos = cosmos_client()
+    cosmos = cosmos_client()
     database = cosmos.create_database_if_not_exists(setting("COSMOS_DATABASE"))
     notes = create_notes_container(database, setting("COSMOS_CONTAINER"), reset=True)
     started = time.perf_counter()
