@@ -1,0 +1,450 @@
+{
+  "model": "gemini-3.5-flash-lite",
+  "date": "2026-11-27",
+  "rows": [
+    {
+      "category": "appunti_assente",
+      "expected_tool": "none",
+      "question": "Cosa ho scritto su agemasu e moraimasu?",
+      "answer": "[omessa: contenuto degli appunti privati]",
+      "route": "recupera",
+      "tools_called": [],
+      "observations": [],
+      "retrieved": {
+        "scores": [
+          0.699,
+          0.692,
+          0.688,
+          0.679
+        ]
+      },
+      "calls": 2,
+      "input_tokens": 1847,
+      "output_tokens": 65,
+      "thinking_tokens": 0,
+      "seconds": 2.11,
+      "hit_limit": false,
+      "api_error": false,
+      "expected_route": "recupera",
+      "tool_ok": true,
+      "route_ok": true,
+      "answer_ok": true,
+      "backend": "local"
+    },
+    {
+      "category": "appunti",
+      "expected_tool": "none",
+      "question": "Quale è la traduzione di 覚えます?",
+      "answer": "[omessa: contenuto degli appunti privati]",
+      "route": "usa_tool",
+      "tools_called": [
+        "lookup_word",
+        "lookup_word"
+      ],
+      "observations": [
+        "{\"found\": false, \"word\": \"覚えます\"}",
+        "{\"found\": true, \"word\": \"覚える\", \"entries\": [{\"kanji\": [\"覚える\", \"憶える\"], \"readings\": [\"おぼえる\"], \"common\": true, \"senses\": [{\"pos\": [\"Ichidan verb\", \"transitive verb\"], \"meanings\": [\"to memorize\", \"to memorise\", \"to commit to memory\", \"to learn by heart\"]}, {\"pos\": [\"Ichidan verb\", \"transitive verb\"], \"meanings\": [\"to learn\", \"to pick up\", \"to acquire\"]}, {\"pos\": [\"Ichidan verb\", \"transitive verb\"], \"me"
+      ],
+      "retrieved": null,
+      "calls": 4,
+      "input_tokens": 2186,
+      "output_tokens": 180,
+      "thinking_tokens": 0,
+      "seconds": 2.82,
+      "hit_limit": false,
+      "api_error": false,
+      "expected_route": "recupera",
+      "tool_ok": false,
+      "route_ok": false,
+      "answer_ok": false,
+      "backend": "local"
+    },
+    {
+      "category": "appunti",
+      "expected_tool": "none",
+      "question": "Cpsa vuol dire 読みます?",
+      "answer": "[omessa: contenuto degli appunti privati]",
+      "route": "usa_tool",
+      "tools_called": [
+        "lookup_word"
+      ],
+      "observations": [
+        "{\"found\": false, \"word\": \"読みます\"}"
+      ],
+      "retrieved": null,
+      "calls": 3,
+      "input_tokens": 1320,
+      "output_tokens": 85,
+      "thinking_tokens": 0,
+      "seconds": 2.02,
+      "hit_limit": false,
+      "api_error": false,
+      "expected_route": "recupera",
+      "tool_ok": false,
+      "route_ok": false,
+      "answer_ok": false,
+      "backend": "local"
+    },
+    {
+      "category": "appunti_assente",
+      "expected_tool": "none",
+      "question": "Cosa ho scritto su agemasu e moraimasu?",
+      "answer": "[omessa: contenuto degli appunti privati]",
+      "route": "recupera",
+      "tools_called": [],
+      "observations": [],
+      "retrieved": {
+        "scores": [
+          0.699,
+          0.692,
+          0.688,
+          0.679
+        ]
+      },
+      "calls": 2,
+      "input_tokens": 1847,
+      "output_tokens": 32,
+      "thinking_tokens": 0,
+      "seconds": 1.85,
+      "hit_limit": false,
+      "api_error": false,
+      "expected_route": "recupera",
+      "tool_ok": true,
+      "route_ok": true,
+      "answer_ok": true,
+      "backend": "cosmos"
+    },
+    {
+      "category": "appunti",
+      "expected_tool": "none",
+      "question": "Cpsa vuol dire 読みます?",
+      "answer": "[omessa: contenuto degli appunti privati]",
+      "route": "usa_tool",
+      "tools_called": [
+        "lookup_word"
+      ],
+      "observations": [
+        "{\"found\": false, \"word\": \"読みます\"}"
+      ],
+      "retrieved": null,
+      "calls": 3,
+      "input_tokens": 1320,
+      "output_tokens": 77,
+      "thinking_tokens": 0,
+      "seconds": 2.19,
+      "hit_limit": false,
+      "api_error": false,
+      "expected_route": "recupera",
+      "tool_ok": false,
+      "route_ok": false,
+      "answer_ok": false,
+      "backend": "cosmos"
+    },
+    {
+      "category": "appunti",
+      "expected_tool": "none",
+      "question": "Cosa ho scritto su Imasu e Arimasu?",
+      "answer": "[omessa: contenuto degli appunti privati]",
+      "route": "recupera",
+      "tools_called": [],
+      "observations": [],
+      "retrieved": {
+        "scores": [
+          0.729,
+          0.7,
+          0.68,
+          0.677
+        ]
+      },
+      "calls": 2,
+      "input_tokens": 1845,
+      "output_tokens": 161,
+      "thinking_tokens": 0,
+      "seconds": 2.21,
+      "hit_limit": false,
+      "api_error": false,
+      "expected_route": "recupera",
+      "tool_ok": true,
+      "route_ok": true,
+      "answer_ok": true,
+      "backend": "local"
+    },
+    {
+      "category": "appunti_assente",
+      "expected_tool": "none",
+      "question": "Cosa ho scritto su tokoro?",
+      "answer": "[omessa: contenuto degli appunti privati]",
+      "route": "recupera",
+      "tools_called": [],
+      "observations": [],
+      "retrieved": {
+        "scores": [
+          0.675,
+          0.659,
+          0.651,
+          0.649
+        ]
+      },
+      "calls": 2,
+      "input_tokens": 1593,
+      "output_tokens": 111,
+      "thinking_tokens": 0,
+      "seconds": 2.15,
+      "hit_limit": false,
+      "api_error": false,
+      "expected_route": "recupera",
+      "tool_ok": true,
+      "route_ok": true,
+      "answer_ok": true,
+      "backend": "cosmos"
+    },
+    {
+      "category": "appunti",
+      "expected_tool": "none",
+      "question": "Quale è la traduzione di 覚えます?",
+      "answer": "[omessa: contenuto degli appunti privati]",
+      "route": "usa_tool",
+      "tools_called": [
+        "lookup_word"
+      ],
+      "observations": [
+        "{\"found\": false, \"word\": \"覚えます\"}"
+      ],
+      "retrieved": null,
+      "calls": 3,
+      "input_tokens": 1326,
+      "output_tokens": 106,
+      "thinking_tokens": 0,
+      "seconds": 5.19,
+      "hit_limit": false,
+      "api_error": false,
+      "expected_route": "recupera",
+      "tool_ok": false,
+      "route_ok": false,
+      "answer_ok": false,
+      "backend": "cosmos"
+    },
+    {
+      "category": "appunti_assente",
+      "expected_tool": "none",
+      "question": "Cosa ho scritto su tokoro?",
+      "answer": "[omessa: contenuto degli appunti privati]",
+      "route": "recupera",
+      "tools_called": [],
+      "observations": [],
+      "retrieved": {
+        "scores": [
+          0.675,
+          0.659,
+          0.651,
+          0.649
+        ]
+      },
+      "calls": 2,
+      "input_tokens": 1593,
+      "output_tokens": 167,
+      "thinking_tokens": 0,
+      "seconds": 2.14,
+      "hit_limit": false,
+      "api_error": false,
+      "expected_route": "recupera",
+      "tool_ok": true,
+      "route_ok": true,
+      "answer_ok": true,
+      "backend": "local"
+    },
+    {
+      "category": "appunti",
+      "expected_tool": "none",
+      "question": "Come si dicono i giorni della settimana in giapponese?",
+      "answer": "[omessa: contenuto degli appunti privati]",
+      "route": "usa_tool",
+      "tools_called": [
+        "lookup_word"
+      ],
+      "observations": [
+        "{\"found\": true, \"word\": \"月曜日\", \"entries\": [{\"kanji\": [\"月曜日\"], \"readings\": [\"げつようび\"], \"common\": true, \"senses\": [{\"pos\": [\"noun (common) (futsuumeishi)\", \"adverb (fukushi)\"], \"meanings\": [\"Monday\"]}]}]}"
+      ],
+      "retrieved": null,
+      "calls": 3,
+      "input_tokens": 1392,
+      "output_tokens": 285,
+      "thinking_tokens": 0,
+      "seconds": 6.37,
+      "hit_limit": false,
+      "api_error": false,
+      "expected_route": "recupera",
+      "tool_ok": false,
+      "route_ok": false,
+      "answer_ok": false,
+      "backend": "cosmos"
+    },
+    {
+      "category": "appunti",
+      "expected_tool": "none",
+      "question": "Come si dicono i giorni della settimana in giapponese?",
+      "answer": "[omessa: contenuto degli appunti privati]",
+      "route": "usa_tool",
+      "tools_called": [],
+      "observations": [],
+      "retrieved": null,
+      "calls": 2,
+      "input_tokens": 716,
+      "output_tokens": 226,
+      "thinking_tokens": 0,
+      "seconds": 2.1,
+      "hit_limit": false,
+      "api_error": false,
+      "expected_route": "recupera",
+      "tool_ok": true,
+      "route_ok": false,
+      "answer_ok": false,
+      "backend": "local"
+    },
+    {
+      "category": "appunti",
+      "expected_tool": "none",
+      "question": "Quale è la struttura grammaticale per chiedere un permesso?",
+      "answer": "[omessa: contenuto degli appunti privati]",
+      "route": "recupera",
+      "tools_called": [],
+      "observations": [],
+      "retrieved": {
+        "scores": [
+          0.643,
+          0.623,
+          0.615,
+          0.602
+        ]
+      },
+      "calls": 2,
+      "input_tokens": 1819,
+      "output_tokens": 61,
+      "thinking_tokens": 0,
+      "seconds": 1.9,
+      "hit_limit": false,
+      "api_error": false,
+      "expected_route": "recupera",
+      "tool_ok": true,
+      "route_ok": true,
+      "answer_ok": true,
+      "backend": "cosmos"
+    },
+    {
+      "category": "appunti",
+      "expected_tool": "none",
+      "question": "Quale è la struttura grammaticale per chiedere un permesso?",
+      "answer": "[omessa: contenuto degli appunti privati]",
+      "route": "recupera",
+      "tools_called": [],
+      "observations": [],
+      "retrieved": {
+        "scores": [
+          0.643,
+          0.623,
+          0.615,
+          0.602
+        ]
+      },
+      "calls": 2,
+      "input_tokens": 1819,
+      "output_tokens": 61,
+      "thinking_tokens": 0,
+      "seconds": 1.43,
+      "hit_limit": false,
+      "api_error": false,
+      "expected_route": "recupera",
+      "tool_ok": true,
+      "route_ok": true,
+      "answer_ok": true,
+      "backend": "local"
+    },
+    {
+      "category": "appunti",
+      "expected_tool": "none",
+      "question": "Cosa ho scritto su yomimasu?",
+      "answer": "[omessa: contenuto degli appunti privati]",
+      "route": "recupera",
+      "tools_called": [],
+      "observations": [],
+      "retrieved": {
+        "scores": [
+          0.704,
+          0.702,
+          0.7,
+          0.682
+        ]
+      },
+      "calls": 2,
+      "input_tokens": 1841,
+      "output_tokens": 161,
+      "thinking_tokens": 0,
+      "seconds": 2.21,
+      "hit_limit": false,
+      "api_error": false,
+      "expected_route": "recupera",
+      "tool_ok": true,
+      "route_ok": true,
+      "answer_ok": true,
+      "backend": "local"
+    },
+    {
+      "category": "appunti",
+      "expected_tool": "none",
+      "question": "Cosa ho scritto su Imasu e Arimasu?",
+      "answer": "[omessa: contenuto degli appunti privati]",
+      "route": "recupera",
+      "tools_called": [],
+      "observations": [],
+      "retrieved": {
+        "scores": [
+          0.729,
+          0.7,
+          0.68,
+          0.677
+        ]
+      },
+      "calls": 2,
+      "input_tokens": 1845,
+      "output_tokens": 215,
+      "thinking_tokens": 0,
+      "seconds": 1.9,
+      "hit_limit": false,
+      "api_error": false,
+      "expected_route": "recupera",
+      "tool_ok": true,
+      "route_ok": true,
+      "answer_ok": true,
+      "backend": "cosmos"
+    },
+    {
+      "category": "appunti",
+      "expected_tool": "none",
+      "question": "Cosa ho scritto su yomimasu?",
+      "answer": "[omessa: contenuto degli appunti privati]",
+      "route": "recupera",
+      "tools_called": [],
+      "observations": [],
+      "retrieved": {
+        "scores": [
+          0.704,
+          0.702,
+          0.7,
+          0.682
+        ]
+      },
+      "calls": 2,
+      "input_tokens": 1841,
+      "output_tokens": 178,
+      "thinking_tokens": 0,
+      "seconds": 3.02,
+      "hit_limit": false,
+      "api_error": false,
+      "expected_route": "recupera",
+      "tool_ok": true,
+      "route_ok": true,
+      "answer_ok": true,
+      "backend": "cosmos"
+    }
+  ]
+}

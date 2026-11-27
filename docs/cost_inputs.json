@@ -1,0 +1,62 @@
+{
+  "currency": "USD",
+  "region": "East US (West Europe not verified: see price_notes)",
+  "prices_read_on": "2026-11-27",
+  "price_sources": {
+    "container_apps": "Azure Retail Prices API, eastus, as quoted by devzero.io (updated 2026-11-27) and bex.co (2026-09-07); free grant from azure.microsoft.com/pricing/details/container-apps",
+    "cosmos_db": "learn.microsoft.com/azure/cosmos-db/understand-your-bill (US region examples, updated 2026-04-27)",
+    "blob_storage": "usage.ai, East US, checked 2026-11-06",
+    "key_vault": "envmanager.com, typical US regions, 2026-06-12",
+    "container_registry": "pump.co, US East, 2026-01-09 (0.167 $/day x 30)",
+    "log_analytics": "Microsoft Q&A answer of 2026-06-11 (AI-generated, East US example) and monitoringcost.com; to confirm",
+    "gemini": "embedding: ai.google.dev pricing page (read 2026-11-27); gemini-3.5-flash-lite not found on that page today, 0.30/2.50 from benchlm.ai (checked 2026-10-23), same as the README value read on 2026-10-30"
+  },
+  "price_notes": "Official Azure pricing pages render prices client-side and could not be read automatically; values come from the Retail Prices API as quoted by third parties or from Microsoft docs. Re-check in the Azure Pricing Calculator, and re-price in an EU region (West Europe) before quoting to a client.",
+  "prices": {
+    "container_apps_vcpu_second": 0.000024,
+    "container_apps_gib_second": 0.000003,
+    "cosmos_serverless_per_million_ru": 0.25,
+    "cosmos_storage_gb_month": 0.25,
+    "blob_hot_lrs_gb_month": 0.0208,
+    "key_vault_per_10k_operations": 0.03,
+    "registry_month": 5.01,
+    "log_analytics_per_gb": 2.30,
+    "gemini_input_per_million": 0.30,
+    "gemini_output_per_million": 2.50,
+    "gemini_embed_per_million": 0.15
+  },
+  "free_grants": {
+    "container_apps_vcpu_seconds": 180000,
+    "container_apps_gib_seconds": 360000,
+    "log_analytics_free_gb": 5
+  },
+  "scenarios": {"personal": 1, "class": 30, "school": 300},
+  "usage": {
+    "sessions_per_learner_month": 12,
+    "questions_per_session": 15,
+    "minutes_per_session": 20,
+    "sessions_per_replica": 1,
+    "replica_vcpu": 0.5,
+    "replica_gib": 1.0,
+    "tokens_in_per_question": 1242,
+    "tokens_out_per_question": 95,
+    "notes_share": 0.29,
+    "embed_tokens_per_query": 30,
+    "ru_per_vector_query": 50,
+    "ru_per_progress_write": 10,
+    "progress_writes_per_session": 5,
+    "storage_gb": 0.05,
+    "key_vault_ops_per_session": 2,
+    "log_gb_per_learner_month": 0.02
+  },
+  "assumption_notes": {
+    "tokens_in_per_question": "measured: mean of the v1 evaluation, 28 questions (README); notes questions alone used about 1,630 in the 2026-11-27 run",
+    "tokens_out_per_question": "measured: mean of the v1 evaluation, output + thinking",
+    "notes_share": "8 notes questions out of 28 in the v1 test set",
+    "ru_per_vector_query": "assumption, NOT measured: the emulator does not report realistic RU; see sensitivity x10",
+    "minutes_per_session": "assumption; the replica is billed as active for the whole session (pessimistic)",
+    "sessions_per_replica": "1 = today's CLI, one container per conversation; an HTTP API would share a replica across sessions",
+    "registry_month": "ACR Basic per month; 0 if the image is published on GitHub Container Registry (public)",
+    "log_analytics_free_gb": "5 GB per billing account per month, to confirm on the Azure Monitor pricing page"
+  }
+}

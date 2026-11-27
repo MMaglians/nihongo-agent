@@ -5,8 +5,10 @@ A Japanese-learning tutor agent on the Gemini API, built in two versions: v0 is 
 tool-calling loop (no agent framework) with a JMdict dictionary tool and a vocabulary quiz tool;
 v1 puts that loop inside a LangGraph graph with a router, RAG over my handwritten notes and persistent quiz progress.
 
-**Status:** v0.2.0. v1 adds a LangGraph router, RAG over my handwritten notes and progress
-memory. The v0 tool loop is kept as a baseline (see [DECISIONS.md](DECISIONS.md)).
+**Status:** v0.3.0. The v1 agent now runs in Docker next to local emulators of two Azure services
+(Blob Storage for the notes, Cosmos DB for the vector index), with configuration and secrets
+injected at runtime. No Azure subscription was used: the target cloud architecture is designed and
+costed, not deployed (see [Azure services, run locally](#azure-services-run-locally-v030)).
 
 ## Problem
 When I study, I search the web for readings, meanings and explanations, but jumping between sites is tiring and, as a learner, I cannot easily tell which answer to trust, so it slows me down instead of helping. Dictionary tools such as Jisho already handle lookup well, so the goal is not a better dictionary: it is a study companion that I can talk to in plain language, that quizzes me in the same conversation and that, in later versions, will use my own notes and my own progress (what I got wrong, what I have not seen yet).
@@ -35,6 +37,83 @@ flowchart TD
 ```
 Notes pipeline (offline): Goodnotes PDF → 5-page blocks → Gemini transcription (Markdown + doubts)
 → manual review → `notes/` → embeddings (cached by fingerprint).
+
+## Azure services, run locally (v0.3.0)
+The notes RAG now uses two Azure services through their official Python SDKs: the notes live in
+Blob Storage and the note vectors in Cosmos DB for NoSQL (vector index DiskANN, cosine distance).
+Both run as the official Microsoft emulators (Azurite, Cosmos DB vNext emulator) in Docker Compose,
+next to the agent's own image. Moving to the cloud means changing configuration values, not code.
+
+```mermaid
+flowchart LR
+    subgraph host["My PC: Docker Desktop"]
+        ENV[".env<br/>secrets, read at start"]
+        DATA[("./data bind mount<br/>JMdict, progress.db")]
+        subgraph net["Compose network nihongo"]
+            APP["nihongo container<br/>chat_v1.py, non-root"]
+            IDX["index_notes_cosmos.py<br/>same image"]
+            AZ[("azurite<br/>Blob Storage emulator<br/>notes .md")]
+            CO[("cosmos<br/>Cosmos DB emulator<br/>note vectors, DiskANN")]
+        end
+    end
+    ENV -.->|env_file| APP
+    DATA -.- APP
+    APP -->|"vector search<br/>cosmos:8081"| CO
+    IDX -->|"read notes<br/>azurite:10000"| AZ
+    IDX -->|upsert vectors| CO
+    APP --> G["Gemini API<br/>generation, embeddings"]
+    IDX --> G
+```
+
+| v1 (local) | v0.3.0 (Azure services, emulated) | Target on Azure (designed, not deployed) |
+|---|---|---|
+| `notes/` folder | Blob container `notes` (Azurite) | Azure Blob Storage |
+| `notes_index.json` + numpy | Cosmos DB container, vector policy + DiskANN index | Azure Cosmos DB for NoSQL, serverless |
+| `GEMINI_API_KEY` read with `os.getenv` | `get_secret()`: environment variables | `get_secret()`: Key Vault with managed identity |
+| `uv run` on Windows | one image (`python:3.12-slim`, non-root) + Compose | Azure Container Apps |
+
+The switch is configuration only: `NOTES_BACKEND=local|cosmos` chooses the notes index
+(`CosmosNotesIndex` has the same `search()` as `NotesIndex`, so the graph is unchanged) and
+`SECRETS_BACKEND=env|keyvault` chooses where secrets come from. The Key Vault provider is written
+and unit-tested with a fake client, but never ran against a real vault.
+
+Run with Docker (Docker Desktop):
+```bash
+docker compose up -d azurite cosmos                                  # emulators
+uv run python scripts/upload_notes_blob.py                           # notes/ -> Blob
+docker compose run --rm nihongo python scripts/index_notes_cosmos.py # Blob -> Gemini embeddings -> Cosmos
+docker compose run --rm nihongo                                      # chat, notes from Cosmos DB
+docker compose down                                                  # volumes are kept
+```
+Measured on my laptop: first image build 26.0 s, rebuild after a code change 3.7 s (dependency
+layer cached), image size 501 MB on disk. The image contains no `.env`, notes or data: `.dockerignore`
+and tests (`tests/test_docker_files.py`) enforce it.
+
+**Target architecture on Azure** (designed and costed, not deployed):
+```mermaid
+flowchart LR
+    U["Learner"] -->|"HTTPS, needs an HTTP API"| CA["Azure Container Apps<br/>nihongo-agent image<br/>scale to zero"]
+    CA -->|managed identity| KV[("Key Vault<br/>gemini-api-key")]
+    CA -->|"vector search, progress"| CO[("Cosmos DB for NoSQL<br/>serverless")]
+    CA --> G["Gemini API"]
+    JOB["Container Apps job<br/>index the notes"] -->|read| BL[("Blob Storage<br/>notes")]
+    JOB -->|upsert vectors| CO
+    JOB --> G
+    REG[("Container registry<br/>ACR or GHCR")] -.->|pull image| CA & JOB
+    CA & JOB -.->|logs| LA[("Log Analytics")]
+```
+Two pieces do not exist yet: an HTTP API in front of the agent (today it is a command-line chat)
+and progress stored in Cosmos DB instead of SQLite (a container's disk is not persistent).
+
+**Estimated monthly cost** of the target architecture (prices of 2026-11-27, East US, USD;
+assumptions, sources and recommendations in [docs/COSTS.md](docs/COSTS.md)):
+
+| | 1 learner | 30 learners | 300 learners |
+|---|---|---|---|
+| Total per month | 5.13 $ | 9.43 $ | 100.00 $ |
+| Per learner | 5.13 $ | 0.31 $ | 0.33 $ |
+| Largest item | container registry, 5.01 $ | Gemini API, 3.30 $ | Container Apps, 59.40 $ |
+| With an HTTP API (10 sessions per replica) | 5.13 $ | 8.35 $ | 41.68 $ |
 
 ## Quick start
 Requirements: Python 3.11+, [uv](https://docs.astral.sh/uv/), a Gemini API key (free tier).
@@ -83,6 +162,36 @@ Agente> Non è corretto! La risposta giusta era la **D** (*to differ (from)*, ci
 
 Vuoi provare un'altra domanda?
 ```
+
+## Evaluation: local index vs Cosmos DB (v0.3.0)
+Does moving the note vectors from a JSON file + numpy to Cosmos DB change the agent? The 8 notes
+questions of the v1 test set were run with both backends in the same session, interleaved
+question by question to limit drift over time, then shuffled with a fixed seed and labelled by hand
+without knowing the backend (same rules, docs/SCOPE.md). Model gemini-3.5-flash-lite, 2026-11-27,
+Cosmos DB vNext emulator in Docker. Confidence intervals: Wilson 95%.
+
+| Metric | Local (numpy) | Cosmos DB (emulator) |
+|---|---|---|
+| Correct route | 5/8 (95% CI 0.31-0.86) | 5/8 (95% CI 0.31-0.86) |
+| Correct answer | 5/8 (95% CI 0.31-0.86) | 5/8 (95% CI 0.31-0.86) |
+| Same chunks retrieved | 5/5 questions routed to retrieval by both | |
+| Median seconds per question | 2.1 | 2.2 |
+| Mean tokens per question (in / out) | 1,646 / 138 | 1,623 / 133 |
+| API errors | 0 | 0 |
+
+All 8 pairs agree on route and answer (no discordant pair, sign test p = 1.0). This shows no
+observed difference, not equivalence: 8 questions cannot detect a small one. The stronger evidence
+is mechanical: both backends return the same chunks, so the model sees the same context; a direct
+retrieval check on the same 8 questions also gave the same top-4 chunks in the same order 8/8
+(cosine difference below 0.0005). The 3 failures are the same 3 questions as in the v1 evaluation:
+they do not mention the notes and the router sends them to the dictionary with both backends.
+This was also the first run of the notes questions after the chunking fix of v0.2.0: 5/8 as before.
+Latency was measured against a local emulator and says nothing about Cosmos DB in the cloud.
+One label was corrected for a typing slip before the report was produced.
+
+Reproduce (emulators running): `uv run python eval/run_eval_backends.py`, then
+`eval/label_v1.py data/results_backends_full.json` and `eval/report_backends.py`.
+`eval/results_backends.json` omits the answers that quote my notes.
 
 ## Evaluation (v1)
 28 questions: the 20 of v0 plus 8 about my notes (6 answerable, 2 on topics absent from the
@@ -213,6 +322,18 @@ person who also wrote the questions. Intervals are wide: read the numbers as bas
 - v0 and v1 were run on different days (2026-10-30 and 2026-11-06): latency differences and model drift between runs are possible.
 - The LLM judge agrees with my labels on 47/48 answers but was checked on only 3 wrong answers: it does not replace hand labelling yet.
 
+**Cloud and containers (v0.3.0)**
+- No Azure resource was created: Blob Storage and Cosmos DB run as local emulators. The Cosmos DB
+emulator does not enforce authentication and implements a subset of the service, so RBAC, managed
+identity, Key Vault and cloud latency are designed, not tested.
+- With fewer than 1,000 vectors Cosmos DB answers DiskANN queries with an exact scan: the
+retrieval check validates the integration, not the quality of approximate search.
+- The agent is still a command-line chat: running it on Container Apps needs an HTTP API, and quiz
+progress (SQLite on a bind mount) would need to move to a managed database.
+- The secrets reach the container as environment variables from `.env`, visible with `docker inspect`.
+- The cost estimate uses East US prices, partly read from secondary sources (see docs/COSTS.md);
+an EU deployment needs re-pricing in an EU region.
+
 
 ## Cost
 Free tier: 0 $. Estimated pay-as-you-go equivalent, from the evaluations:
@@ -229,6 +350,8 @@ about 30 tokens per query, because embedding token counts are not logged).
 One-off costs, not included above: the notebook transcription (one call per 5-page block, about 30
 calls plus retries; token usage not logged, so its cost is not measured) and the embedding of the
 note chunks, which is cached and recomputed only when the notes change.
+For the monthly cost of the target Azure architecture (hosting, database, storage, secrets,
+registry, logs and model), see [docs/COSTS.md](docs/COSTS.md).
 
 
 ## Project structure
@@ -252,15 +375,30 @@ nihongo-agent/
 │   ├── evaluation_v1.py       # v1 evaluation and paired comparison with v0
 │   ├── judge.py                # LLM judge with the hand-labelling rules
 │   ├── config.py               # model names and API key from .env
+│   ├── secret_store.py         # get_secret(): environment variables or Azure Key Vault
+│   ├── azure_config.py         # Azure settings, Cosmos client, wait for the emulator
+│   ├── azure_notes.py          # notes in Blob Storage, vectors in Cosmos DB
+│   ├── notes_backend.py        # NOTES_BACKEND: local index or Cosmos DB
+│   ├── backend_eval.py         # interleaved, blind comparison of the two backends
+│   ├── costs.py                # monthly cost model (prices from docs/cost_inputs.json)
 │   └── one_step.py             # single model call used by step_once.py
 ├── eval/                       # questions, runners, labelling, judge,  reports, results (v0 and v1)
 ├── scripts/
 │   ├── fetch_jmdict.py         # downloads the dictionary into data/ (not committed)
-│   └── transcribe_notes.py     # transcribes the notebook into notes_draft/
+│   ├──transcribe_notes.py     # transcribes the notebook into notes_draft/
+│   ├── upload_notes_blob.py    # notes/ -> Blob Storage
+│   ├── index_notes_cosmos.py   # Blob -> Gemini embeddings -> Cosmos DB
+│   ├── compare_retrieval.py    # local vs Cosmos retrieval on the notes questions
+│   └── estimate_costs.py       # monthly cost table per scenario
 ├── tests/                      # pytest suite (no network)
 ├── docs/SCOPE.md               # scope and success criteria
 ├── docs/context_and_memory.md  # consulting memo: what goes in the context vs in memory
 ├── DECISIONS.md                # architecture decisions
+├── docs/COSTS.md               # monthly cost estimate and recommendations
+├── docs/cost_inputs.json       # prices, sources and assumptions of the estimate
+├── Dockerfile                  # agent image: slim, non-root, no secrets
+├── compose.yaml                # agent + Azurite + Cosmos DB emulator
+├── .dockerignore               # keeps .env, notes and data out of the image
 ├── .env.example                # environment variables template
 ├── LICENSE                     # MIT
 └── pyproject.toml              # dependencies (uv)
