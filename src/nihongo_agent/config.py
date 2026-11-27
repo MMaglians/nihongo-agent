@@ -3,6 +3,8 @@ import os
 
 from dotenv import load_dotenv
 
+from nihongo_agent.secret_store import get_secret
+
 load_dotenv()
 
 DEFAULT_MODEL = "gemini-3.5-flash-lite"
@@ -12,11 +14,8 @@ def get_model_name() -> str:
     return os.getenv("GEMINI_MODEL", DEFAULT_MODEL)
 
 def get_api_key() -> str:
-    """Restituisce la chiave senza mai stamparla."""
-    key = os.getenv("GEMINI_API_KEY")
-    if not key:
-        raise RuntimeError("GEMINI_API_KEY mancante: controlla il file .env")
-    return key
+    """Restituisce la chiave senza mai stamparla (dal gestore dei segreti)."""
+    return get_secret("GEMINI_API_KEY")
 
 
 DEFAULT_EMBED_MODEL = "gemini-embedding-001"

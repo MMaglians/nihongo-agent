@@ -1,0 +1,46 @@
+# Il pilastro e i due emulatori Azure sulla stessa rete di Docker.
+#   docker compose up -d azurite cosmos     avvia gli emulatori
+#   docker compose run --rm nihongo         chat interattiva (backend Cosmos)
+name: nihongo
+
+services:
+  azurite:
+    image: mcr.microsoft.com/azure-storage/azurite
+    command: azurite-blob --blobHost 0.0.0.0 --location /data
+    ports:
+      - "10000:10000"
+    volumes:
+      - azurite-data:/data
+
+  cosmos:
+    image: mcr.microsoft.com/cosmosdb/linux/azure-cosmos-emulator:vnext-latest
+    ports:
+      - "8081:8081"   # API
+      - "8080:8080"   # salute: /ready
+      - "1234:1234"   # Data Explorer
+    volumes:
+      - cosmos-data:/data
+
+  nihongo:
+    build: .
+    image: nihongo-agent:dev
+    env_file: .env          # GEMINI_API_KEY e le altre impostazioni, lette all'avvio (non nell'immagine)
+    environment:            # vincono sul .env: dentro la rete di Docker gli host sono i nomi dei servizi
+      NOTES_BACKEND: cosmos
+      COSMOS_ENDPOINT: http://cosmos:8081
+      COSMOS_READY_URL: http://cosmos:8080/ready
+      AZURE_STORAGE_CONNECTION_STRING: "DefaultEndpointsProtocol=http;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;BlobEndpoint=http://azurite:10000/devstoreaccount1;"
+    volumes:
+      - ./data:/app/data    # dizionario JMdict e progress.db: restano sul tuo PC
+      - ./logs:/app/logs    # tracce JSONL
+    depends_on:
+      - azurite
+      - cosmos
+    stdin_open: true
+    tty: true
+
+volumes:
+  azurite-data:
+    name: azurite-data      # stessi volumi del Giorno 1: gli appunti caricati restano
+  cosmos-data:
+    name: cosmos-data

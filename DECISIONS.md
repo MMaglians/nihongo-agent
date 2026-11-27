@@ -75,3 +75,50 @@ Decision: full v1 results stay in `data/` (ignored); `eval/results_v1.json` repl
 ## 16. An LLM judge validated against my labels before any use
 Decision: the judge applies the same rules I used for hand labelling, gives a binary verdict with the reasoning first, sees only the evidence the agent had, and the answer under review is fenced and marked as text to evaluate, not instructions. It runs on a different model from the generator. Unreadable verdicts are kept as missing, not counted as wrong.
 Why: a judge is a measuring instrument with known biases (position, length, self-preference) and must be calibrated on labels it has not seen. Agreement is reported with Cohen's kappa and its interval, and with the direction of the disagreements, because a judge that is more lenient than the human is the dangerous case.
+
+## 17. Azure services through local emulators, no cloud account
+Decision: Blob Storage and Cosmos DB run as the official Microsoft emulators in Docker; no Azure
+subscription was created. Why: the free account needs a credit card and identity data that I chose
+not to provide, the Learn sandbox is no longer available, and free trials have no quota for Azure
+OpenAI models. The emulators use the same SDKs and protocols, so the code is the same; what they do
+not cover (authentication, RBAC, latency, cost) is stated as a limitation and replaced by a design
+and a cost estimate.
+
+## 18. Cosmos DB for NoSQL instead of Azure AI Search
+Decision: the note vectors live in a Cosmos DB container (vector policy, cosine, DiskANN index).
+Why: Cosmos DB has a local emulator with vector search, and in the target architecture it can also
+hold the quiz progress, so one service replaces SQLite and the vector file. Trade-off: no hybrid
+BM25 + vector ranking or semantic ranker, which AI Search offers; with 9 chunks this does not matter,
+with a large document corpus AI Search would be the better fit.
+
+## 19. Pluggable notes index and secrets, chosen by environment
+Decision: `NOTES_BACKEND` (local or cosmos) and `SECRETS_BACKEND` (env or keyvault) select the
+implementation; both default to the previous behaviour. Why: the graph depends on an interface
+(`search()`, `get_secret()`), not on a service, so the same code runs on my PC, in Compose and in
+the cloud. The Key Vault provider is tested only with a fake client; its SDKs are not installed.
+
+## 20. One image, configuration at runtime
+Decision: a slim, non-root image built from `uv.lock` with `--locked`; dependencies in a separate
+layer; `.env`, notes and data excluded by `.dockerignore` and checked by tests. Why: the same image
+can run anywhere, a rebuild after a code change takes seconds, and a published image cannot leak my
+key or my notes.
+
+## 21. Endpoint discovery off for the emulator
+Decision: the Cosmos client is created with `enable_endpoint_discovery=False` (setting
+`COSMOS_ENDPOINT_DISCOVERY`). Why: the emulator advertises `localhost`, which inside Compose points
+to the agent's own container; with discovery off the SDK always uses `COSMOS_ENDPOINT`. A multi-region
+account would turn it back on.
+
+## 22. Backend comparison in the same session, interleaved and blind
+Decision: the two backends answer the same 8 questions alternately in one session; the answers are
+shuffled before labelling. Why: comparing with the v1 run of 2026-11-06 would mix the backend with
+the chunking fix, the day and possible model drift; interleaving limits drift and blind labelling
+limits my own bias. Consequence: the result can show a regression, not prove equivalence; identical
+retrieved chunks are the main evidence.
+
+## 23. Cost model with explicit assumptions, prices outside the code
+Decision: `scripts/estimate_costs.py` computes the monthly cost from `docs/cost_inputs.json`, where
+every price has a source and a date and every assumption is marked as measured or assumed; the
+code refuses to run with a missing price. Why: prices change and some were read from secondary
+sources; the reader can check and update them without touching code, and a sensitivity run shows
+which assumptions matter.
